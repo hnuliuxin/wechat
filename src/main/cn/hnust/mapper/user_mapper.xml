@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="main.cn.hnust.mapper.user_mapper">
+    <select id="get_user_List" resultType="main.cn.hnust.model.user">
+        select * from user
+    </select>
+    <select id="get_user_List_by_user_ID" resultType="main.cn.hnust.model.user">
+        select * from user where user_ID=#{user_ID};
+    </select>
+    <select id="get_user_List_by_class" resultType="main.cn.hnust.model.user">
+        select * from user where user_name =#{user_name} and user_password=#{user_password}
+        and user_ID=#{user_ID};
+    </select>
+    <select id="get_user_List_by_openID" resultType="main.cn.hnust.model.user">
+        select * from user where openID=#{openID};
+    </select>
+    <insert id="insert_user" parameterType="main.cn.hnust.model.user">
+        insert into user (openID,user_name,user_ID,user_password)
+        values (#{openID},#{user_name},#{user_ID},#{user_password});
+    </insert>
+</mapper>

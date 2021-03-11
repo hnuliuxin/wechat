@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="c4e296ab-548f-41ed-aa4c-08550d844082" name="默认更改列表" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="wechat" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="FxmlFile" />
+        <option value="XSLT Stylesheet" />
+        <option value="Interface" />
+        <option value="Class" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="vmOptionsForImporter" value="-Xmx768m" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="1" />
+  </component>
+  <component name="ProjectId" id="1pGteAhqrMf0P21d792AhTs3LGj" />
+  <component name="ProjectViewState">
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$USER_HOME$/.m2/repository/junit/junit/4.12/junit-4.12.jar!/" />
+    <property name="project.structure.last.edited" value="模块" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.37816092" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="File.Encoding" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\学习\wechat\WebContent\js\web_js" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Smart Tomcat.wechat">
+    <configuration name="ExcelDataUtil" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="main.cn.hnust.utils.ExcelDataUtil" />
+      <module name="wechat" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="main.cn.hnust.utils.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="mybatis_test.add_participants" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="wechat" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="mybatis_test" />
+      <option name="METHOD_NAME" value="add_participants" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="mybatis_test.insert" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="wechat" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="mybatis_test" />
+      <option name="METHOD_NAME" value="insert" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="mybatis_test.javatest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="wechat" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="mybatis_test" />
+      <option name="METHOD_NAME" value="javatest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="mybatis_test.sign_record_test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="wechat" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="mybatis_test" />
+      <option name="METHOD_NAME" value="sign_record_test" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="com.poratu.idea.plugins.tomcat" factoryName="SMART_TOMCAT_FACTORY" show_console_on_std_err="false" show_console_on_std_out="false">
+      <option name="adminPort" value="8005" />
+      <option name="allowRunningInParallel" value="false" />
+      <option name="contextPath" value="/wechat" />
+      <option name="docBase" value="D:\学习\wechat\WebContent" />
+      <option name="envOptions" />
+      <option name="moduleName" />
+      <option name="passParentEnvironmentVariables" value="true" />
+      <option name="port" value="80" />
+      <option name="tomcatInfo">
+        <TomcatInfo>
+          <option name="name" value="Apache Tomcat 9.0.35" />
+          <option name="number" value="0" />
+          <option name="path" value="D:\java2.0\apache-tomcat-9.0.35" />
+          <option name="version" value="9.0.35.0" />
+        </TomcatInfo>
+      </option>
+      <option name="vmOptions" value="" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="wechat" type="com.poratu.idea.plugins.tomcat" factoryName="SMART_TOMCAT_FACTORY" show_console_on_std_err="false" show_console_on_std_out="false">
+      <option name="adminPort" value="8005" />
+      <option name="allowRunningInParallel" value="false" />
+      <option name="contextPath" value="/" />
+      <option name="docBase" value="D:\学习\wechat\WebContent" />
+      <option name="envOptions" />
+      <option name="moduleName" />
+      <option name="passParentEnvironmentVariables" value="true" />
+      <option name="port" value="80" />
+      <option name="tomcatInfo">
+        <TomcatInfo>
+          <option name="name" value="Apache Tomcat 9.0.35" />
+          <option name="number" value="0" />
+          <option name="path" value="D:\java2.0\apache-tomcat-9.0.35" />
+          <option name="version" value="9.0.35.0" />
+        </TomcatInfo>
+      </option>
+      <option name="vmOptions" value="-Dfile.encoding=utf-8" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.ExcelDataUtil" />
+      <item itemvalue="JUnit.mybatis_test.add_participants" />
+      <item itemvalue="JUnit.mybatis_test.javatest" />
+      <item itemvalue="JUnit.mybatis_test.sign_record_test" />
+      <item itemvalue="JUnit.mybatis_test.insert" />
+      <item itemvalue="Smart Tomcat.wechat" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.mybatis_test.insert" />
+        <item itemvalue="Application.ExcelDataUtil" />
+        <item itemvalue="JUnit.mybatis_test.javatest" />
+        <item itemvalue="JUnit.mybatis_test.add_participants" />
+        <item itemvalue="JUnit.mybatis_test.sign_record_test" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c4e296ab-548f-41ed-aa4c-08550d844082" name="默认更改列表" comment="" />
+      <created>1614821347364</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1614821347364</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.js" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="361" y="74" key="#Notifications" timestamp="1614823601661">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="361" y="74" key="#Notifications/0.0.1536.824@0.0.1536.824" timestamp="1614823601661" />
+    <state x="223" y="70" width="1089" height="732" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1615378181551">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="223" y="70" width="1089" height="732" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1615378181551" />
+    <state x="609" y="221" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1615011103523">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="609" y="221" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.824@0.0.1536.824" timestamp="1615011103523" />
+    <state x="399" y="105" key="#com.intellij.ide.fileTemplates.ui.ConfigureTemplatesDialog" timestamp="1614908280700">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="399" y="105" key="#com.intellij.ide.fileTemplates.ui.ConfigureTemplatesDialog/0.0.1536.824@0.0.1536.824" timestamp="1614908280700" />
+    <state x="229" y="211" key="#com.intellij.ide.util.MemberChooser" timestamp="1615298860086">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="229" y="211" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1615298860086" />
+    <state x="620" y="304" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1614824148372">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="620" y="304" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1536.824@0.0.1536.824" timestamp="1614824148372" />
+    <state x="594" y="279" width="348" height="271" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1614909678669">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="594" y="279" width="348" height="271" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1536.824@0.0.1536.824" timestamp="1614909678669" />
+    <state x="361" y="74" key="#项目结构" timestamp="1615012456474">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="361" y="74" key="#项目结构/0.0.1536.824@0.0.1536.824" timestamp="1615012456474" />
+    <state x="445" y="171" key="DBNavigator.ConnectionFilterSettingsDialog" timestamp="1614908610540">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="445" y="171" key="DBNavigator.ConnectionFilterSettingsDialog/0.0.1536.824@0.0.1536.824" timestamp="1614908610540" />
+    <state x="81" y="108" key="DBNavigator.ProjectSettingsDialog" timestamp="1615258640648">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="81" y="108" key="DBNavigator.ProjectSettingsDialog/0.0.1536.824@0.0.1536.824" timestamp="1615258640648" />
+    <state x="742" y="260" key="DBNavigator.ResultSetRecordViewerDialog" timestamp="1615362751271">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="742" y="260" key="DBNavigator.ResultSetRecordViewerDialog/0.0.1536.824@0.0.1536.824" timestamp="1615362751271" />
+    <state x="651" y="156" key="FileChooserDialogImpl" timestamp="1615258628770">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="651" y="156" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1615258628770" />
+    <state width="1493" height="198" key="GridCell.Tab.0.bottom" timestamp="1615453794075">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="198" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1615453794075" />
+    <state width="1493" height="198" key="GridCell.Tab.0.center" timestamp="1615453794075">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="198" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1615453794075" />
+    <state width="1493" height="198" key="GridCell.Tab.0.left" timestamp="1615453794075">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="198" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1615453794075" />
+    <state width="1493" height="198" key="GridCell.Tab.0.right" timestamp="1615453794075">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="198" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1615453794075" />
+    <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1615426251740">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="261" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1615426251740" />
+    <state width="1493" height="261" key="GridCell.Tab.1.center" timestamp="1615426251740">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="261" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1615426251740" />
+    <state width="1493" height="261" key="GridCell.Tab.1.left" timestamp="1615426251740">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="261" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1615426251740" />
+    <state width="1493" height="261" key="GridCell.Tab.1.right" timestamp="1615426251740">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="261" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1615426251740" />
+    <state x="349" y="150" key="IDE.errors.dialog" timestamp="1615362904454">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="349" y="150" key="IDE.errors.dialog/0.0.1536.824@0.0.1536.824" timestamp="1615362904454" />
+    <state x="299" y="70" key="Maven.ArtifactSearchDialog" timestamp="1615444607950">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="299" y="70" key="Maven.ArtifactSearchDialog/0.0.1536.824@0.0.1536.824" timestamp="1615444607950" />
+    <state x="497" y="136" key="NewModule_or_Project.wizard" timestamp="1614909305999">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="497" y="136" key="NewModule_or_Project.wizard/0.0.1536.824@0.0.1536.824" timestamp="1614909305999" />
+    <state x="218" y="46" width="1038" height="778" key="SettingsEditor" timestamp="1615445764434">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="218" y="46" width="1038" height="778" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1615445764434" />
+    <state x="565" y="193" key="chooseDestDirectoryDialog" timestamp="1614909502805">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="565" y="193" key="chooseDestDirectoryDialog/0.0.1536.824@0.0.1536.824" timestamp="1614909502805" />
+    <state x="454" y="336" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1615015064232">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="454" y="336" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1536.824@0.0.1536.824" timestamp="1615015064232" />
+    <state x="425" y="66" width="672" height="676" key="search.everywhere.popup" timestamp="1615429947926">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="425" y="66" width="672" height="676" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1615429947926" />
+  </component>
+</project>

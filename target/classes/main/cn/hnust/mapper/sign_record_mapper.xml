@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="main.cn.hnust.mapper.sign_record_mapper">
+    <select id="get_sign_record_List" resultType="main.cn.hnust.model.sign_record">
+        select * from sign_record
+    </select>
+    <select id="get_sign_record_List_by_sign_num" resultType="main.cn.hnust.model.sign_record">
+        select * from sign_record where sign_num=#{sign_num} and end_time > #{now_time};
+    </select>
+    <select id="get_sign_record_List_by_userID" resultType="main.cn.hnust.model.sign_record">
+        select * from sign_record where user_ID=#{user_ID};
+    </select>
+    <select id="get_sign_record_List_by_ID" resultType="main.cn.hnust.model.sign_record">
+        select * from sign_record where ID=#{ID};
+    </select>
+    <insert id="insert_sign_record" parameterType="main.cn.hnust.model.sign_record">
+        insert into sign_record (ID,record_date,user_ID,sign_num,start_time,
+        end_time,location_Latitude,location_Longitude,location_Precision )
+        values (#{ID},#{record_date},#{user_ID},#{sign_num},#{start_time},
+        #{end_time},#{location_Latitude},#{location_Longitude},#{location_Precision});
+    </insert>
+</mapper>

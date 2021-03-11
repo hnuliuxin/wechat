@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="css/animate.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/materialdesignicons.min.css">
+	<link rel="stylesheet" href="css/style.min.css">
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/materialdesignicons.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css">
+	<link rel="stylesheet" href="js/bootstrap-datepicker/bootstrap-datepicker3.min.css">
+	<link href="css/style.min.css" rel="stylesheet">
+	<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+
+	<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+	<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
+	
+	<script type="text/javascript" src="js/web_js/index.js"></script>
+	<script type="text/javascript" src="js/web_js/create_sign.js"></script>
+</head>
+<body>
+	<div class="card">
+		<div class="card-header bg-primary">
+			<h4>签到创建卡</h4>
+		</div>
+	</div>
+	<div class="card-body">
+		<p>发起人：<label id="start_people"></label></p>
+		<p>发起时间：<label id="start_time"></label></p>
+		<p>结束时间:<label id="end_day"></label><input type="time" id="end_time">
+		<hr>
+		<p align="center"><button onclick="create_sign()">发起签到</button></p>
+	</div>
+
+	<script type="text/javascript">
+		var index = window.location.href;
+		var user_ID = index;
+
+		if(user_ID.indexOf("?")!=-1){
+			var url=user_ID.substr(user_ID.indexOf("?")+1);
+			var user_ID = url.substr(url.indexOf("=")+1);
+// <!--			var strs = str.split("&");-->
+// <!--			user_ID=strs[0].substr(strs[0].indexOf("=")+1);-->
+
+ 		}
+		// var date = new Date();
+		// var year = date.getFullYear();
+		// var month = date.getMonth()+1;
+		// var day = date.getDate();
+		// var hour = date.getHours();
+		// var minute = date.getMinutes();
+		// var seconds = date.getSeconds();
+		// if(month<10){
+		// 	month = "0" + month;
+		// }
+		// if(day<10){
+		// 	day = "0" + day;
+		// }
+		// var nowdate = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
+		// document.getElementById('start_time').innerHTML = nowdate;
+		$(document).ready(function(){
+				$.ajax({
+					type:"get",
+					url:"http://daipeng.nat300.top/create_sign_servlet",
+					data:{'user_ID':user_ID,'do_type':'1'},
+					dataType:"jsonp",
+					jsonp:"callback",
+					success:function(t){
+						document.getElementById('start_people').innerHTML = t.user_name;
+						var date = new Date();
+						var year = date.getFullYear();
+						var month = date.getMonth()+1;
+						var day = date.getDate();
+						var hour = date.getHours();
+						var minute = date.getMinutes();
+						var seconds = date.getSeconds();
+						if(month<10){
+							month = "0" + month;
+						}
+						if(day<10){
+							day = "0" + day;
+						}
+						var start_time = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
+						document.getElementById('start_time').innerHTML = start_time;
+						document.getElementById('end_day').innerHTML = year + "-" + month + "-" + day;
+
+					}
+				})
+			}
+		)
+	</script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/animate.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="css/style.min.css">
+  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+<div class="card">
+  <div class="card-header bg-primary">
+    <h4>签到创建卡</h4>
+  </div>
+</div>
+<div class="card-body">
+  <p>发起人：<label id="start_people"></label></p>
+  <p>签到码：<label id="sign_num"></label></p>
+  <p>发起时间：<label id="start_time"></label></p>
+  <p>结束时间：<label id="end_time"></label></p>
+  <hr>
+</div>
+<p>签到列表</p>
+<div class="table-responsive">
+  <table class="table" id="information_participate">
+    <thead>
+    <tr>
+      <th>学号/工号</th>
+      <th>姓名</th>
+      <th>签到状态</th>
+    </tr>
+    </thead>
+  </table>
+</div>
+<script type="text/javascript">
+      $(document).ready(function(){
+        var index = window.location.search;//取问号后面的值
+		var user_ID,sponsor_ID;
+        if (index.indexOf("?") != -1) {
+            var str = index.substr(1);
+            strs = str.split("&");
+            user_ID = strs[0].split('=')[1];
+            sponsor_ID = strs[1].split('=')[1];
+        }
+        $.ajax({
+          type:"get",
+          url:'http://daipeng.nat300.top/information_user_servlet',
+          data:{'user_ID':user_ID,'sponsor_ID':sponsor_ID},
+          dataType:'jsonp',
+          jsonp:'callback',
+          success:function(t){
+            document.getElementById('start_people').innerHTML = t.user_information.user_name;
+            document.getElementById('sign_num').innerHTML = t.sign_record.sign_num;
+            document.getElementById('start_time').innerHTML = t.sign_record.record_date + " "+ t.sign_record.start_time;
+            document.getElementById('end_time').innerHTML = t.sign_record.record_date + " " + t.sign_record.end_time;
+
+            var str = "";
+            for(var i=0;i<t.sign_record_length;i++){
+              str = "<tbody><tr><td>" + t.data[i].user_ID + "</td><td>" + t.data[i].user_name + "</td><td>" + "成功" + "</td></tr></tbody>";
+              $("#information_participate").append(str);
+            }
+          }
+        })
+      })
+  </script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/perfect-scrollbar.min.js"></script>
+<script type="text/javascript" src="js/main.min.js"></script>
+</body>
+</html>

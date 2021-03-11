@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/animate.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="css/style.min.css">
+  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <style>
+    /**
+     * 图标示例样式(这里单独放页面中)
+     * example-icons
+     */
+    .example-icons {
+        padding: 0 20px 10px 20px;
+        -webkit-column-count: 4;
+        -moz-column-count: 4;
+        column-count: 4;
+        -webkit-column-gap: 20px;
+        -moz-column-gap: 20px;
+        column-gap: 20px;
+    }
+    .example-icons div {
+        line-height: 2.5em;
+    }
+    .example-icons div span {
+        cursor: pointer;
+        font-size: 14px;
+        text-overflow: ellipsis;
+        display: inline-block;
+        max-width: calc(100% - 90px);
+        overflow: hidden;
+        vertical-align: middle;
+        white-space: nowrap;
+    }
+    .example-icons div code:hover,
+    .example-icons div span:hover,
+    .example-icons div i:hover {
+        color: #33cabb;
+    }
+    .example-icons div code:hover {
+        border-color: #33cabb;
+    }
+    .example-icons div code {
+        border: 1px solid #DDD;
+        width: 46px;
+        margin-left: 2px;
+        margin-right: 4px;
+        border-radius: 4px;
+        display: inline-block;
+        vertical-align: middle;
+        text-align: center;
+        line-height: 24px;
+        cursor: pointer;
+    }
+    .example-icons div i {
+        display: inline-block;
+        width: 32px;
+        height: 24px;
+        text-align: center;
+        vertical-align: middle;
+        cursor: pointer;
+        line-height: 24px;
+    }
+    .example-icons .mdi:before {
+        font-size: 24px;
+    }
+</style>
+</head>
+<body>
+  <div class="table-responsive">
+      <table class="table" id="participate_record">
+        <thead>
+          <tr>
+            <th>签到码</th>
+            <th>日期</th>
+            <th>时间</th>
+            <th>查看详细信息</th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+    <script>
+      $(document).ready(function(){
+        var index = window.location.search;//取问号后面的值
+        var user_ID = index.substr(index.indexOf("?user_ID=")+9);
+        $.ajax({
+          type:"get",
+        url:'http://daipeng.nat300.top/participate_record_servlet',
+        data:{'user_ID':user_ID},
+        dataType:'jsonp',
+        jsonp:'callback',
+        success:function(t){
+          var str = "";
+
+          for(var i=0;i<t.length;i++){
+            var participate_ID = t.data[i].iD;
+            str = "<tbody><tr><td>"
+                + t.data[i].sign_num
+              + "</td><td>"
+              + t.data[i].record_date + "</td><td>" + t.data[i].start_time + "</td><td>"
+              + "<a href='information_participate.html?user_ID=" + user_ID + "&participate_ID=" + participate_ID + "'><img src='img/xiangxixinxi.png' alt='详细信息' width='25px' height='25px'>" + "</a>" + "</td></tr></tbody>";
+            $("#participate_record").append(str);
+          }
+        }
+        })
+      })
+    </script>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0, user-scalable=no">
+    <title>Insert title here</title>
+    <link rel="stylesheet" href="http://i.gtimg.cn/vipstyle/frozenui/2.0.0/css/frozen.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
+
+    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" language="javascript">
+
+    //获取随机串
+    var createNonceStr = function() {
+       return Math.random().toString(36).substr(2, 15);
+    };
+
+    // timestamp
+    var createTimeStamp = function () {
+      return parseInt(new Date().getTime() / 1000) + '';
+    };
+
+    $.ajax({
+        url :'http://daipeng.nat300.top/WxSign',
+        dataType:"jsonp",
+        type: 'post',
+        data: {
+            url:location.href.split('#')[0],
+            timestamp: createTimeStamp,
+            nonce_str: createNonceStr
+        },
+        timeout: 10000,
+        success: function(data) {
+
+            wx.config({
+                debug: false,
+                // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                appId: "wx875c1c1d739ff17f",
+                timestamp: data.timestamp ,
+                nonceStr: data.nonceStr,
+                signature: data.signature,
+                jsApiList: ["openLocation","getLocation"]
+            });
+
+            wx.ready(function(){
+                    //config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。
+                    wx.getLocation({
+                    type: 'wgs84',
+                    success: function (res) {
+                        var latitude = res.latitude;
+                        var longitude = res.longitude;
+                        var speed = res.speed;
+                        var accuracy = res.accuracy;
+                        console.log(latitude);
+                        console.log(longitude);
+                    }
+                });
+            });
+            wx.error(function(res){
+                //config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
+                //alert("抱歉，服务器初始化错误。");
+            });
+        },
+
+        error: function(xhr, type, errorThrown) {
+            //异常处理；
+            console.log(xhr);
+            console.log(type);
+            console.log(errorThrown);
+        }
+    });
+
+    //获取地址栏参数，name:参数名称
+    function getUrlParms(name){
+      var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+      var r = window.location.search.substr(1).match(reg);
+      if(r!=null)
+      return unescape(r[2]);
+      return null;
+    }
+
+    $(document).ready(function(){
+
+          $("button#loc").click(function(){
+              var latitude = null;
+              var longitude = null;
+              wx.getLocation({
+                type: 'wgs84',
+                success: function (res) {
+                     latitude = res.latitude;
+                     longitude = res.longitude;
+                    var speed = res.speed;
+                    var accuracy = res.accuracy;
+                    $("div#j").text("经度: " + longitude);
+                    $("div#w").text("维度: " + latitude);
+                  },
+                  cancel: function (res) {
+                      alert('用户拒绝授权获取地理位置');
+                  }
+              });
+          });
+
+
+    });
+
+
+    </script>
+</head>
+<body>
+<div id="j">经度</div>
+<div id="w">维度</div>
+<div class="demo">
+    <button class="ui-btn-lg-nowhole ui-btn-danger" id="loc">获取定位信息</button>
+</div>
+
+</body>
+</html>

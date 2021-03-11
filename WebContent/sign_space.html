@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="css/animate.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/materialdesignicons.min.css">
+	<link rel="stylesheet" href="css/style.min.css">
+	<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="js/web_js/sign_space.js"></script>
+	<style> 
+        .black_overlay{ 
+            display: none; 
+            position: absolute; 
+            top: 0%; 
+            left: 0%; 
+            width: 100%; 
+            height: 100%; 
+            background-color: black; 
+            z-index:1001; 
+            -moz-opacity: 0.8; 
+            opacity:.80; 
+            filter: alpha(opacity=88); 
+        } 
+        .white_content { 
+            display: none; 
+            position: absolute; 
+            top: 25%; 
+            left: 25%; 
+            width: 55%; 
+            height: 55%; 
+            padding: 20px; 
+            border: 10px; 
+            background-color: white; 
+            z-index:1002; 
+            overflow: auto; 
+        } 
+    </style> 
+</head>
+<body>
+	<div class="card">
+      <div class="card-header bg-info">
+        <button class="btn btn-w-md btn-round btn-primary" onclick="openDialog()">新建+</button>
+      </div>
+      <div class="white_content" id="light">
+	      <form class="form-horizontal" action="#" method="post" enctype="multipart/form-data" onsubmit="return false;" id="light1">
+	          <div class="form-group">
+	            <label class="col-xs-12">空间名称</label>
+	            <div class="col-xs-12">
+	              <input class="form-control" type="text" id="space_name" name="example-text-input" placeholder="请输入合适的名称">
+	            </div>
+	          </div>
+	          <div class="form-group">
+	            <label class="col-xs-12">正确格式的excel文件<a href="index.html"><img src="img/wenhao1.png" width="20px" height="20px"></a></label>
+					<hr>
+	            <div class="col-xs-12">
+	              <input type="file" id="excel_file">
+	            </div>
+	          </div>
+	          <div class="form-group">
+	            <div class="col-xs-12">
+	              <button class="btn btn-primary" type="submit" onclick="sign_space()">提交</button>
+	            </div>
+	          </div>
+	        </form>
+	    </div>
+      <div class="card-body">
+        <p>内容...</p>
+      </div>
+    </div>
+    <script type="text/javascript">
+    	$(function(){
+    	})
+    	function openDialog(){
+    		document.getElementById('light').style.display='block';
+    		document.getElementById('fade').style.display='block';
+    	}
+    </script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="main.cn.hnust.mapper.sign_space_mapper">
+    <select id="get_sign_space_List" resultType="main.cn.hnust.model.sign_space">
+        select * from sign_space
+    </select>
+    <select id="get_sign_space_by_user_ID" resultType="main.cn.hnust.model.sign_space">
+        select * from sign_space where user_ID=#{user_ID};
+    </select>
+    <insert id="insert_sign_space" parameterType="main.cn.hnust.model.sign_space">
+        insert into sign_space (ID,space_name,user_ID) values (#{ID},#{space_name},#{user_ID});
+    </insert>
+</mapper>
