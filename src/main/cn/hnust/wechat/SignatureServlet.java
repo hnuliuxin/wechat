@@ -50,7 +50,6 @@ public class SignatureServlet extends HttpServlet {
         if(o==null){
             System.out.println("Is null");
         }
-        System.out.println(o.toString());
         response.getWriter().println(callback+"("+o.toString()+")");
     }
 

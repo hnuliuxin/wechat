@@ -3,19 +3,14 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
+	<title>登录</title>
 <!-- 	<script type="text/javascript" src="js/loading.js"></script> -->
 	<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
 </head>
 <body>
-	<div id="a">测试界面</div>
 	<script>
 		$(document).ready(function(){
-			
-		// var json1 = {'code':100, 'id':100};
-		// json1.code;
-		// var json2 = [{'code':100, 'id':100},{'code':100, 'id':100}]
-		// json2[0].code;
+
 		var appid = "wxf6817d77698a38c9";
 		url_code = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + appid + "&redirect_uri=http%3a%2f%2fdaipeng.nat300.top&response_type=code&scope=snsapi_base&state=123#wechat_redirect";
 		console.log(url_code);

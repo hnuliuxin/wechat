@@ -41,7 +41,9 @@ public class MenuSetting {
 				"{" +
 				"\"type\":\"view\"," +
 				"\"name\":\"主页\"," +
-				"\"url\":\"https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf6817d77698a38c9&redirect_uri=http%3a%2f%2fdaipeng.nat300.top&response_type=code&scope=snsapi_base&state=123&connect_redirect=1#wechat_redirect\"" +
+				"\"url\":\"https://open.weixin.qq.com/connect/oauth2/authorize?" +
+				"appid=wxf6817d77698a38c9&redirect_uri=http%3a%2f%2fdaipeng.nat300.top" +
+				"&response_type=code&scope=snsapi_base&state=123&connect_redirect=1#wechat_redirect\"" +
 				"}]}";
         System.out.println(json);
          

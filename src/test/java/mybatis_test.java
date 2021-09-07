@@ -10,9 +10,12 @@ import main.cn.hnust.utils.Mybatis_utils;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 
+import java.io.File;
 import java.sql.Date;
 import java.sql.Time;
 import java.util.*;
+
+import static main.cn.hnust.utils.ExcelDataUtil.use_Excel;
 
 public class mybatis_test {
     @Test
@@ -41,8 +44,8 @@ public class mybatis_test {
 
     @Test
     public  void javatest(){
-
-        System.out.println("俩五日");
+        File file=new File("D:\\工作\\test.xls");
+        use_Excel(file);
     }
 
     @Test
@@ -82,4 +85,5 @@ public class mybatis_test {
         //关闭sqlSession
         sqlSession.close();
     }
+
 }

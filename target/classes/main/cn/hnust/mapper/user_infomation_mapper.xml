@@ -6,6 +6,9 @@
     <select id="get_user_infomation_List" resultType="main.cn.hnust.model.user_infomation">
         select * from user_infomation
     </select>
+    <select id="get_user_infomation_by_ID" resultType="main.cn.hnust.model.user_infomation">
+        select * from user_infomation where user_ID=#{user_ID};
+    </select>
     <select id="get_user_infomation_List_by_signID_List" resultType="main.cn.hnust.model.user_infomation">
         select * from user_infomation
         <where>

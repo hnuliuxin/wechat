@@ -45,7 +45,9 @@
             <th>签到状态</th>
           </tr>
         </thead>
-      </table>
+		  <tbody id="body_one">
+		  </tbody>
+	  </table>
     </div>
   <script type="text/javascript">
 
@@ -66,7 +68,7 @@
           dataType:'jsonp',
           jsonp:'callback',
           success:function(t){
-            document.getElementById('start_people').innerHTML = t.user_information.user_name;
+            document.getElementById('start_people').innerHTML = t.user.user_name;
             document.getElementById('sign_num').innerHTML = t.sign_record.sign_num;
             document.getElementById('start_time').innerHTML = t.sign_record.record_date + " "+ t.sign_record.start_time;
             document.getElementById('end_time').innerHTML = t.sign_record.record_date + " " + t.sign_record.end_time;
@@ -83,10 +85,16 @@
               sign_space_ID[i] = t.sign_spaces[i].iD;
               $("#sign_space").append(strs);
             }
+
           }
         })
       })
       function information_sponsor_button(){
+
+      	document.getElementById("body_one").innerHTML = "";
+
+
+
       	var index = window.location.search;//取问号后面的值
 		    var sponsor_ID;
         if (index.indexOf("?") != -1) {
@@ -114,9 +122,10 @@
               	  alert("选定签到空间成功");
                   var str = "";
                   for(var i=0;i<t.data_length;i++){
-                  str = "<tbody><tr><td>" + t.data[i].user_ID + "</td><td>" + t.data[i].user_name + "</td><td>" + "---" + "</td></tr></tbody>";
-                  $("#information_sponsor").append(str);
-                }
+					  str = "<tr><td>" + t.data[i].user_ID + "</td><td>" + t.data[i].user_name + "</td><td>" + "---" + "</td></tr>";
+					  $("#body_one").append(str);
+				}
+
             }
         })
       }

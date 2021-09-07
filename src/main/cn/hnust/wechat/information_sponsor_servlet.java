@@ -48,7 +48,6 @@ public class information_sponsor_servlet extends HttpServlet {
                         String user_ID=request.getParameter("user_ID");
                         String sign_record_ID=request.getParameter("sponsor_ID");
 
-                        System.out.println("发起签到ID："+sign_record_ID);
                         sign_record sr=srm.get_sign_record_List_by_ID(sign_record_ID);
                         participantsList=pm.get_participants_by_sign_record_ID(sign_record_ID);
                         user u=um.get_user_List_by_user_ID(user_ID);
@@ -61,7 +60,7 @@ public class information_sponsor_servlet extends HttpServlet {
                         }
                         else{
                                 json_ob.put("sign_record",sr);
-                                json_ob.put("user_information",u);
+                                json_ob.put("user",u);
                                 json_ob.put("data",participantsList);
                                 json_ob.put("sign_record_length",participantsList.size());
                                 json_ob.put("sign_space_length",sign_spaces.size());
@@ -78,8 +77,6 @@ public class information_sponsor_servlet extends HttpServlet {
 
 
                         List<user_infomation> user_infomations=uim.get_user_infomation_List_by_signID_List(ss);
-                        System.out.println("user_infomations="+user_infomations);
-                        System.out.println("participantsList="+participantsList);
                         if(user_infomations!=null&&participantsList!=null){
                             for(participants pp:participantsList){
                                 for(user_infomation ui:user_infomations){
@@ -89,7 +86,6 @@ public class information_sponsor_servlet extends HttpServlet {
                                     }
                                 }
                             }
-                            System.out.println("user_infomations||"+user_infomations);
                             json_ob.put("status",1);
                             json_ob.put("msg","OK");
                             json_ob.put("data",user_infomations);

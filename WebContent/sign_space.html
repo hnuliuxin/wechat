@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
+	<title>签到空间</title>
 	<link rel="stylesheet" href="css/animate.css">
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/materialdesignicons.min.css">
@@ -45,7 +45,8 @@
         <button class="btn btn-w-md btn-round btn-primary" onclick="openDialog()">新建+</button>
       </div>
       <div class="white_content" id="light">
-	      <form class="form-horizontal" action="#" method="post" enctype="multipart/form-data" onsubmit="return false;" id="light1">
+
+	      <form class="form-horizontal" action="" method="post" enctype="multipart/form-data" onsubmit="return false;" id="light1">
 	          <div class="form-group">
 	            <label class="col-xs-12">空间名称</label>
 	            <div class="col-xs-12">
@@ -56,7 +57,7 @@
 	            <label class="col-xs-12">正确格式的excel文件<a href="index.html"><img src="img/wenhao1.png" width="20px" height="20px"></a></label>
 					<hr>
 	            <div class="col-xs-12">
-	              <input type="file" id="excel_file">
+	              <input type="file" id="excel_file" accept="application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
 	            </div>
 	          </div>
 	          <div class="form-group">
@@ -71,11 +72,36 @@
       </div>
     </div>
     <script type="text/javascript">
-    	$(function(){
-    	})
+
+    		//提交文件
+			function sign_space(){
+			       var index=window.location.search;//取问号后面的值
+				   var user_ID=index.substr(index.indexOf("?user_ID=")+9);
+				   var space_name=document.getElementById('space_name').value;
+                   var fileObj = $("#excel_file")[0].files[0]; //获取file对象
+				   var FileController = "http://daipeng.nat300.top/sign_space_servlet";//此处填写servlet路径
+				   var form = new FormData();
+				   form.append("String",space_name);
+				   form.append("String",user_ID);
+				   alert(space_name);
+				   form.append("file", fileObj);
+
+				   var xhr = new XMLHttpRequest();
+					xhr.open("post", FileController, true);
+					xhr.onload = function (t) {
+						if(t.status == 0){
+							alert(t.msg);
+						}else{
+							alert("上传完成!");
+							var url="index.html?user_ID="+user_ID;
+							window.location.href=url;
+						}
+
+					};
+					xhr.send(form);
+			}
     	function openDialog(){
     		document.getElementById('light').style.display='block';
-    		document.getElementById('fade').style.display='block';
     	}
     </script>
 </body>

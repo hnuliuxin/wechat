@@ -8,8 +8,9 @@
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/materialdesignicons.min.css">
 	<link rel="stylesheet" href="css/style.min.css">
-	<script type="text/javascript" src="js/web_js/participate_sign.js"></script>
 	<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
 </head>
 <body>
 	<div class="card">
@@ -21,5 +22,98 @@
         <button type="button" onclick="participate_sign()">确定签到</button>
       </div>
     </div>
+	<script type="text/javascript">
+		var createNonceStr = function() {
+		   return Math.random().toString(36).substr(2, 15);
+		};
+		// timestamp
+		var createTimeStamp = function () {
+		  return parseInt(new Date().getTime() / 1000) + '';
+		};
+		$(document).ready(function(){
+			$.ajax({
+				url :'http://daipeng.nat300.top/WxSign',
+				dataType:"jsonp",
+				type: 'post',
+				data: {
+					'url':location.href.split('#')[0],
+					'timestamp': createTimeStamp,
+					'nonce_str': createNonceStr
+				},
+				timeout: 10000,
+				success: function(data) {
+
+					wx.config({
+						debug: false,
+						// 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+						appId: "wxf6817d77698a38c9",
+						timestamp: data.timestamp ,
+						nonceStr: data.nonceStr,
+						signature: data.signature,
+						jsApiList: ["openLocation","getLocation"]
+					});
+
+					wx.ready(function(){
+							//config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。
+							wx.getLocation({
+							type: 'wgs84',
+							success: function (res) {
+								var latitude = res.latitude;
+								var longitude = res.longitude;
+								var accuracy = res.accuracy;
+							}
+						});
+					});
+					wx.error(function(res){
+						//config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
+						//alert("抱歉，服务器初始化错误。");
+					});
+				},
+
+				error: function(xhr, type, errorThrown) {
+					//异常处理；
+					console.log(xhr);
+					console.log(type);
+					console.log(errorThrown);
+				}
+			});
+		});
+        function participate_sign(){
+
+			var sign_num = document.getElementById('sign_num').value;
+			var index=window.location.search;//取问号后面的值
+			var user_ID=index.substr(index.indexOf("?user_ID=")+9);
+			wx.getLocation({
+		        type: 'wgs84',
+				success: function (res) {
+                    $.ajax({
+                        type:"get",
+                        url:'http://daipeng.nat300.top/participate_sign_servlet',
+                        data:{
+                            'sign_num':sign_num,'user_ID':user_ID,
+                            'location_Latitude':res.latitude,
+                            'location_Longitude':res.longitude,
+                            'location_Precision':res.accuracy
+                        },
+                        dataType:'jsonp',
+                        jsonp:'callback',
+                        success:function(t){
+                            if(t.status==1){
+                                alert("签到成功");
+                                url = "index.html?user_ID="+user_ID;
+                                window.location.href = url;
+                            }else{
+                                alert("签到失败");
+                                alert(t.msg);
+                            }
+                        }
+                    });
+                },
+                cancel: function (res) {
+                  alert('用户拒绝授权获取地理位置');
+                }
+			});
+		}
+	</script>
 </body>
 </html>

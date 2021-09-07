@@ -19,7 +19,6 @@
 	<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
 	
 	<script type="text/javascript" src="js/web_js/index.js"></script>
-	<script type="text/javascript" src="js/web_js/create_sign.js"></script>
 </head>
 <body>
 	<div class="card">
@@ -36,61 +35,163 @@
 	</div>
 
 	<script type="text/javascript">
+
+		var createNonceStr = function() {
+		   return Math.random().toString(36).substr(2, 15);
+		};
+
+		// timestamp
+		var createTimeStamp = function () {
+		  return parseInt(new Date().getTime() / 1000) + '';
+		};
 		var index = window.location.href;
 		var user_ID = index;
 
 		if(user_ID.indexOf("?")!=-1){
 			var url=user_ID.substr(user_ID.indexOf("?")+1);
 			var user_ID = url.substr(url.indexOf("=")+1);
-// <!--			var strs = str.split("&");-->
-// <!--			user_ID=strs[0].substr(strs[0].indexOf("=")+1);-->
-
- 		}
-		// var date = new Date();
-		// var year = date.getFullYear();
-		// var month = date.getMonth()+1;
-		// var day = date.getDate();
-		// var hour = date.getHours();
-		// var minute = date.getMinutes();
-		// var seconds = date.getSeconds();
-		// if(month<10){
-		// 	month = "0" + month;
-		// }
-		// if(day<10){
-		// 	day = "0" + day;
-		// }
-		// var nowdate = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
-		// document.getElementById('start_time').innerHTML = nowdate;
+		}
 		$(document).ready(function(){
-				$.ajax({
-					type:"get",
-					url:"http://daipeng.nat300.top/create_sign_servlet",
-					data:{'user_ID':user_ID,'do_type':'1'},
-					dataType:"jsonp",
-					jsonp:"callback",
-					success:function(t){
-						document.getElementById('start_people').innerHTML = t.user_name;
-						var date = new Date();
-						var year = date.getFullYear();
-						var month = date.getMonth()+1;
-						var day = date.getDate();
-						var hour = date.getHours();
-						var minute = date.getMinutes();
-						var seconds = date.getSeconds();
-						if(month<10){
-							month = "0" + month;
-						}
-						if(day<10){
-							day = "0" + day;
-						}
-						var start_time = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
-						document.getElementById('start_time').innerHTML = start_time;
-						document.getElementById('end_day').innerHTML = year + "-" + month + "-" + day;
+			$.ajax({
+				url :'http://daipeng.nat300.top/WxSign',
+				dataType:"jsonp",
+				type: 'post',
+				data: {
+					'url':location.href.split('#')[0],
+					'timestamp': createTimeStamp,
+					'nonce_str': createNonceStr
+				},
+				timeout: 10000,
+				success: function(data) {
 
+					wx.config({
+						debug: false,
+						// 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+						appId: "wxf6817d77698a38c9",
+						timestamp: data.timestamp ,
+						nonceStr: data.nonceStr,
+						signature: data.signature,
+						jsApiList: ["openLocation","getLocation"]
+					});
+
+					wx.ready(function(){
+							//config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。
+							wx.getLocation({
+							type: 'wgs84',
+							success: function (res) {
+								var latitude = res.latitude;
+								var longitude = res.longitude;
+								var accuracy = res.accuracy;
+							}
+						});
+					});
+					wx.error(function(res){
+						//config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
+						//alert("抱歉，服务器初始化错误。");
+					});
+				},
+
+				error: function(xhr, type, errorThrown) {
+					//异常处理；
+					console.log(xhr);
+					console.log(type);
+					console.log(errorThrown);
+				}
+			});
+
+
+			$.ajax({
+				type:"get",
+				url:"http://daipeng.nat300.top/create_sign_servlet",
+				data:{'user_ID':user_ID,'do_type':'1'},
+				dataType:"jsonp",
+				jsonp:"callback",
+				success:function(t){
+					document.getElementById('start_people').innerHTML = t.user_name;
+					var date = new Date();
+					var year = date.getFullYear();
+					var month = date.getMonth()+1;
+					var day = date.getDate();
+					var hour = date.getHours();
+					var minute = date.getMinutes();
+					var seconds = date.getSeconds();
+					if(month<10){
+						month = "0" + month;
 					}
-				})
+					if(day<10){
+						day = "0" + day;
+					}
+					var start_time = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + seconds;
+					document.getElementById('start_time').innerHTML = start_time;
+					document.getElementById('end_day').innerHTML = year + "-" + month + "-" + day;
+
+				}
+			})
+		})
+		function create_sign(){
+
+			var index=window.location.search;
+			var user_ID = index.substr(index.indexOf("?user_ID=")+9);
+			var date = new Date();
+			var year = date.getFullYear();
+			var month = date.getMonth()+1;
+			var day = date.getDate();
+			var hour = date.getHours();
+			var minute = date.getMinutes();
+			var seconds = date.getSeconds();
+			if(month<10){
+				month = "0" + month;
 			}
-		)
+			if(day<10){
+				day = "0" + day;
+			}
+			var start_time = hour + ":" + minute + ":" + seconds;
+			var end_time_one = document.getElementById('end_time').value;
+			var end_time = end_time_one + ":" + seconds;
+			var record_date = year + "-" + month + "-" + day;//年月日
+			var end_hour = end_time_one.substr(0,2);
+			var end_minute = end_time_one.substr(3,5);
+
+			if(end_time_one == "" || end_time_one == null){
+				alert("请正确输入结束时间");
+			}
+			else if(end_hour < hour || (end_hour == hour && end_minute<minute)){
+				alert("请正确输入结束时间");
+			}
+			else{
+				wx.getLocation({
+					type: 'wgs84',
+					success: function (res) {
+						$.ajax({
+							type:"get",
+							url:'http://daipeng.nat300.top/create_sign_servlet',
+							data:{
+								'do_type':'2','record_date':record_date,
+								'user_ID':user_ID,'end_time':end_time,
+								'location_Latitude':res.latitude,
+								'location_Longitude':res.longitude,
+								'location_Precision':res.accuracy
+							},
+							dataType:'jsonp',
+							jsonp:'callback',
+							success:function(t){
+								if(t.status=="1"){
+									alert("创建成功");
+									url = "sponsor_record.html?user_ID="+user_ID;
+									window.location.href = url;
+								}else{
+									alert("创建失败");
+								}
+							}
+						})
+					},
+					cancel: function (res) {
+						  alert('用户拒绝授权获取地理位置');
+					}
+				});
+
+			}
+		}
 	</script>
 </body>
 </html>

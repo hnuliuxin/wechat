@@ -26,16 +26,22 @@
     <show-object-properties value="true" />
     <loaded-nodes>
       <connection connection-id="0fdb99e6-0e46-4c7b-997f-6fbcbe726b68">
-        <schema name="wechat_database" object-types="table, view" />
+        <schema name="wechat_database" object-types="dataset trigger, function, procedure, view, column, index, table, constraint" />
       </connection>
     </loaded-nodes>
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="0fdb99e6-0e46-4c7b-997f-6fbcbe726b68">
-      <console name="Connection" type="STANDARD" schema="wechat_database" session="Main"><![CDATA[#select * from sign_record;
-#delete from user_infomation where sign_space_ID=asd;
+      <console name="Connection" type="STANDARD" schema="wechat_database" session="Main">#select * from sign_record;
+
+delete from user;
+delete from user_infomation;
+delete from participants;
+delete from sign_record;
+delete from sign_space;
+
 #select * from sign_space;
-select * from user_infomation;]]></console>
+#select * from user;</console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">

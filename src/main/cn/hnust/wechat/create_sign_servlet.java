@@ -33,18 +33,12 @@ public class create_sign_servlet extends HttpServlet {
         protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
                 request.setCharacterEncoding("UTF-8");
                 response.setCharacterEncoding("UTF-8");
-
                 String callback = request.getParameter("callback");
                 String do_type=request.getParameter("do_type");
-
-                //System.out.println("do_type="+request.getParameter("do_type"));
-
                 SqlSession sqlSession= Mybatis_utils.getSqlSession();
                 user_mapper pm=sqlSession.getMapper(user_mapper.class);
-
                 JSONObject json_ob=new JSONObject();
                 if(do_type.equals("1")){
-                        //System.out.println("进入查询");
                         String user_ID=request.getParameter("user_ID");
                         user u=pm.get_user_List_by_user_ID(user_ID);
                         if(u==null){
@@ -52,7 +46,6 @@ public class create_sign_servlet extends HttpServlet {
                                 json_ob.put("msg","user not found");
                         }
                         else{
-
                                 String user_name=u.getUser_name();
                                 json_ob.put("user_name",user_name);
                                 json_ob.put("status",1);
@@ -83,25 +76,16 @@ public class create_sign_servlet extends HttpServlet {
 
                         String record_date=request.getParameter("record_date");
                         String user_ID=request.getParameter("user_ID");
-
-
                         String end_time=request.getParameter("end_time");
-
                         System.out.println("\n"+record_date+"|record_date");
                         System.out.println(start_time+"|start_time");
                         System.out.println(end_time+"|end_time\n");
-
                         String location_Latitude=request.getParameter("location_Latitude");
                         String location_Longitude=request.getParameter("location_Longitude");
                         String location_Precision=request.getParameter("location_Precision");
-
-                        System.out.println(location_Latitude);
-                        System.out.println(location_Longitude);
-                        System.out.println(location_Precision+"\n");
                         sign_record sr=new sign_record(ID, java.sql.Date.valueOf(record_date),user_ID,sign_num
                                 , Time.valueOf(start_time),Time.valueOf(end_time),Double.parseDouble(location_Latitude)
                                 , Double.parseDouble(location_Longitude), Double.parseDouble(location_Precision));
-
                         int sta=srm.insert_sign_record(sr);
                         if(sta==1){
                                 json_ob.put("status",1);
@@ -110,13 +94,11 @@ public class create_sign_servlet extends HttpServlet {
                         }
                         else{
                                 json_ob.put("status",101);
-                                json_ob.put("msg","fail to cteate");
+                                json_ob.put("msg","fail to create");
                         }
-
                         sqlSession.commit();
                         sqlSession.close();
                 }
-
                 response.getWriter().println(callback+"("+json_ob+")");
         }
 }

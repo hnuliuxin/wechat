@@ -6,10 +6,12 @@
     <title>Insert title here</title>
     <link rel="stylesheet" href="http://i.gtimg.cn/vipstyle/frozenui/2.0.0/css/frozen.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+
+    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
     <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
 
-    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+
     <script type="text/javascript" language="javascript">
 
     //获取随机串
@@ -35,9 +37,9 @@
         success: function(data) {
 
             wx.config({
-                debug: false,
+                debug: true,
                 // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-                appId: "wx875c1c1d739ff17f",
+                appId: "wxf6817d77698a38c9",
                 timestamp: data.timestamp ,
                 nonceStr: data.nonceStr,
                 signature: data.signature,

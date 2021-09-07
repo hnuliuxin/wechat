@@ -25,24 +25,19 @@ import java.io.IOException;
 )
 public class loading_servlet extends HttpServlet{
 
-    protected void doGet (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet (HttpServletRequest request, HttpServletResponse response) throws  IOException {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
 
         String callback = request.getParameter("callback");
-        //System.out.println("请求进入");
-        //String result = "success";
         System.out.println("code="+request.getParameter("code"));
         String code=request.getParameter("code");
-        JSONObject openID=null;
-
         NetWorkHelper netWorkHelper=new NetWorkHelper();
         String url=String.format("https://api.weixin.qq.com/sns/oauth2/access_token?appid=%s&secret=%s&code=%s&grant_type=authorization_code",
                getInitParameter("appId"),getInitParameter("appSecret"),code);
         String result=netWorkHelper.getHttpsResponse(url,"");
         JSONObject res=JSON.parseObject(result);
         String open_id=res.getString("openid");
-        //System.out.println(open_id);
 
         SqlSession sqlSession= Mybatis_utils.getSqlSession();
         user_mapper pm=sqlSession.getMapper(user_mapper.class);
@@ -59,11 +54,6 @@ public class loading_servlet extends HttpServlet{
             json_ob.put("msg","In there");
             json_ob.put("userID",u.getUser_ID());
         }
-
-
-
-        //response.setHeader("Access-Control-Allow-Origin", "*");
-
         response.getWriter().println(callback+"("+json_ob+")");
     }
 

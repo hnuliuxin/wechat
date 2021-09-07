@@ -37,15 +37,11 @@ public class sponsor_record_servlet extends HttpServlet {
         sign_record_mapper srm=sqlSession.getMapper(sign_record_mapper.class);
 
         List<sign_record> sign_records=srm.get_sign_record_List_by_userID(user_ID);
-//        for(sign_record sr:sign_records){
-//            json_ob.put("")
-//        }
         json_ob.put("status","OK");
         json_ob.put("msg","return success");
         json_ob.put("data",sign_records);
         json_ob.put("length",sign_records.size());
 
-        //sqlSession.commit();
         sqlSession.close();
 
         response.getWriter().println(callback+"("+json_ob+")");
