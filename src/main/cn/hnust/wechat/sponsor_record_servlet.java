@@ -2,12 +2,10 @@ package main.cn.hnust.wechat;
 
 import com.alibaba.fastjson.JSONObject;
 import main.cn.hnust.mapper.sign_record_mapper;
-import main.cn.hnust.mapper.user_mapper;
 import main.cn.hnust.model.sign_record;
 import main.cn.hnust.utils.Mybatis_utils;
 import org.apache.ibatis.session.SqlSession;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,7 +22,7 @@ import java.util.List;
         }
 )
 public class sponsor_record_servlet extends HttpServlet {
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
 

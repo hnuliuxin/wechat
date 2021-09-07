@@ -1,20 +1,17 @@
 package main.cn.hnust.wechat;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import main.cn.hnust.mapper.user_mapper;
 import main.cn.hnust.model.user;
 import main.cn.hnust.utils.Mybatis_utils;
 import org.apache.ibatis.session.SqlSession;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Map;
 
 @WebServlet(
         urlPatterns = "/sign_up_servlet",
@@ -25,7 +22,7 @@ import java.util.Map;
 )
 public class sign_up_servlet extends HttpServlet {
 
-    protected void doPost (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost (HttpServletRequest request, HttpServletResponse response) throws IOException {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         //System.out.println("请求进入");
@@ -33,7 +30,7 @@ public class sign_up_servlet extends HttpServlet {
         String user_name=request.getParameter("user_name");
         String user_password=request.getParameter("user_password");
         String user_ID=request.getParameter("user_ID");
-        System.out.println("user_name="+user_name);
+        //System.out.println("user_name="+user_name);
         String callback = request.getParameter("callback");
         //System.out.println("请求进入");
         //String result = "success";

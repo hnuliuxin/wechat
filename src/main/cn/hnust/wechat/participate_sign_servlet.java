@@ -10,7 +10,6 @@ import main.cn.hnust.model.sign_record;
 import main.cn.hnust.utils.Mybatis_utils;
 import org.apache.ibatis.session.SqlSession;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Objects;
 import java.util.UUID;
 
 @WebServlet(
@@ -29,7 +29,7 @@ import java.util.UUID;
         }
 )
 public class participate_sign_servlet extends HttpServlet {
-    protected void doGet (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet (HttpServletRequest request, HttpServletResponse response) throws IOException {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");//设置日期格式
@@ -46,30 +46,34 @@ public class participate_sign_servlet extends HttpServlet {
         double location_Latitude=Double.parseDouble(Slocation_Latitude);
         double location_Longitude=Double.parseDouble(Slocation_Longitude);
         //通过签到码和当前时间找到 当前正在签到且签到码符合的签到
-        sign_record sr=srm.get_sign_record_List_by_sign_num(Integer.parseInt(sign_num),df.format(new Date()));
-        if(sr==null){
-            json_ob.put("status",101);
-            json_ob.put("msg","sign_record not found");
+        if(Objects.equals(sign_num, ""))
+        {
+            json_ob.put("status",104);
+            json_ob.put("msg","sign_num is null");
         }
-        else{
-            double location_Latitude_sponsor=sr.getLocation_Latitude();
-            double Location_Longitude_sponsor=sr.getLocation_Longitude();
-            participants p=pm.get_participants_by_userid_signid(user_ID,sr.getID());
-            if(p!=null){
-                json_ob.put("status",102);
-                json_ob.put("msg","already sign in");
-            }
-            else{
-                if(check(location_Latitude,location_Longitude,location_Latitude_sponsor,Location_Longitude_sponsor)){
-                    participants to_insert=new participants(UUID.randomUUID().toString().replaceAll("-","")
-                            ,user_ID,um.get_user_List_by_user_ID(user_ID).getUser_name(),true,sr.getID());
-                    json_ob.put("status",1);
-                    json_ob.put("msg","OK");
-                    pm.insert_participants(to_insert);
-                }
-                else{
-                    json_ob.put("status",103);
-                    json_ob.put("msg","location fail");
+        else {
+            sign_record sr = srm.get_sign_record_List_by_sign_num(Integer.parseInt(sign_num), df.format(new Date()));
+            if (sr == null) {
+                json_ob.put("status", 101);
+                json_ob.put("msg", "sign_record not found");
+            } else {
+                double location_Latitude_sponsor = sr.getLocation_Latitude();
+                double Location_Longitude_sponsor = sr.getLocation_Longitude();
+                participants p = pm.get_participants_by_userid_signid(user_ID, sr.getID());
+                if (p != null) {
+                    json_ob.put("status", 102);
+                    json_ob.put("msg", "already sign in");
+                } else {
+                    if (check(location_Latitude, location_Longitude, location_Latitude_sponsor, Location_Longitude_sponsor)) {
+                        participants to_insert = new participants(UUID.randomUUID().toString().replaceAll("-", "")
+                                , user_ID, um.get_user_List_by_user_ID(user_ID).getUser_name(), true, sr.getID());
+                        json_ob.put("status", 1);
+                        json_ob.put("msg", "OK");
+                        pm.insert_participants(to_insert);
+                    } else {
+                        json_ob.put("status", 103);
+                        json_ob.put("msg", "location fail");
+                    }
                 }
             }
         }
@@ -86,11 +90,9 @@ public class participate_sign_servlet extends HttpServlet {
         double Lb3 = location_Longitude1 * Math.PI / 180.0 - location_Longitude2 * Math.PI / 180.0;
         double s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(La3 / 2), 2) + Math.cos(La1) * Math.cos(La2) * Math.pow(Math.sin(Lb3 / 2), 2)));
         s = s * 6378.137; //地球半径
-        s = Math.round(s * 10000) / 10000;
+        s = Math.round(s * 10000) *1.0 / 10000;
         System.out.println(s);
-        if(s>1.0)
-            return false;
-        return true;
+        return !(s > 1.0);
     }
 }
 

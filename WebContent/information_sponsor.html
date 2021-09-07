@@ -9,62 +9,81 @@
 	<link rel="stylesheet" href="css/materialdesignicons.min.css">
 	<link rel="stylesheet" href="css/style.min.css">
 	<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="js/qrcode.js"></script>
+  <style type="text/css">
+    .close{position: absolute;top: 0;right: 0;}
+  </style>
 </head>
 <body>
-	<div class="card">
-		<div class="card-header bg-primary">
-			<h4>签到创建卡</h4>
-		</div>
-	</div>
-	<div class="card-body">
-		<p>发起人：<label id="start_people"></label></p>
-		<p>签到码：<label id="sign_num"></label></p>
-		<p>发起时间：<label id="start_time"></label></p>
-		<p>结束时间：<label id="end_time"></label></p>
-    <div>
-    <a class="btn btn-primary" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">签到空间</a>
-
-    <button onclick="information_sponsor_button()" class="btn btn-primary" style="float: right;">确定</button>
-    </div>
-
-      <div class="collapse m-t-10" id="collapseExample">
-
-        <ul class="well" id="sign_space">
-
-        </ul>
+  <div id="cover" style="filter: alpha(opacity=30);z-index:2">
+  	<div class="card">
+  		<div class="card-header bg-primary">
+  			<h4>签到创建卡</h4>
+        <div style="position: absolute;top: 10;right: 10px;">
+        <img src="img/二维码.png" style="width: 25px;height: 25px;" onclick="create_qrcode()">
       </div>
-		<hr>
-	</div>
-	<p>签到列表</p>
-	<div class="table-responsive">
-      <table class="table" id="information_sponsor">
-        <thead>
-          <tr>
-            <th>学号/工号</th>
-            <th>姓名</th>
-            <th>签到状态</th>
-          </tr>
-        </thead>
-		  <tbody id="body_one">
-		  </tbody>
-	  </table>
-    </div>
-  <script type="text/javascript">
+  		</div>
+  	</div>
+  	<div class="card-body">
+  		<p>发起人：<label id="start_people"></label></p>
+  		<p>签到码：<label id="sign_num"></label></p>
+  		<p>发起时间：<label id="start_time"></label></p>
+  		<p>结束时间：<label id="end_time"></label></p>
+      <div>
+      <a class="btn btn-primary" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">签到空间</a>
 
+      <button onclick="information_sponsor_button()" class="btn btn-primary" style="float: right;">确定</button>
+      </div>
+      
+        <div class="collapse m-t-10" id="collapseExample">
+
+          <ul class="well" id="sign_space">
+
+          </ul>
+        </div>
+  		<hr>
+  	</div>
+  	<p>签到列表</p>
+  	<div class="table-responsive">
+        <table class="table" id="information_sponsor">
+          <thead>
+            <tr>
+              <th>学号/工号</th>
+              <th>姓名</th>
+              <th>签到状态</th>
+            </tr>
+          </thead>
+  		  <tbody id="body_one">
+  		  </tbody>
+  	  </table>
+      </div>
+    </div>
+    <div id="qrcode" style="width: 150px; height:150px;border: 0px solid #999; display: none; position: absolute; top: 50%; left: 35%; z-index: 3; background: #fff">
+      <div>
+        <button class="close" style="color: red" onclick="close_qrcode()">
+          <img src="img/close.png" style="width: 30px;height: 30px;">
+        </button>
+      </div>
+    </div>
+        <!-- <script type="text/javascript">
+          new QRCode(document.getElementById("qrcode"),"shabi?");
+        </script> -->
+  <script type="text/javascript">
+    var flag = 1;
     var sign_space_ID = new Array();
       $(document).ready(function(){
         var index = window.location.search;//取问号后面的值
-		var user_ID,sponsor_ID;
+		    var user_ID,sign_record_ID;
         if (index.indexOf("?") != -1) {
             var str = index.substr(1);
             strs = str.split("&");
             user_ID = strs[0].split('=')[1];
-            sponsor_ID = strs[1].split('=')[1];
+            sign_record_ID = strs[1].split('=')[1];
         }
         $.ajax({
           type:"get",
           url:'http://daipeng.nat300.top/information_sponsor_servlet',
-          data:{'user_ID':user_ID,'sponsor_ID':sponsor_ID,'do_type':'1'},
+          data:{'user_ID':user_ID,'sign_record_ID':sign_record_ID,'do_type':'1'},
           dataType:'jsonp',
           jsonp:'callback',
           success:function(t){
@@ -96,11 +115,11 @@
 
 
       	var index = window.location.search;//取问号后面的值
-		    var sponsor_ID;
+		    var sign_record_ID;
         if (index.indexOf("?") != -1) {
             var str = index.substr(1);
             strs = str.split("&");
-            sponsor_ID = strs[1].split('=')[1];
+            sign_record_ID = strs[1].split('=')[1];
         }
 
         var obj=document.getElementsByName('space');
@@ -115,7 +134,7 @@
         $.ajax({
             type:"get",
             url:'http://daipeng.nat300.top/information_sponsor_servlet',
-            data:{'do_type':'2','sign_spaces_ID':vals,'sponsor_ID':sponsor_ID},
+            data:{'do_type':'2','sign_spaces_ID':vals,'sign_record_ID':sign_record_ID},
             dataType:'jsonp',
             jsonp:'callback',
             success:function(t){
@@ -128,6 +147,46 @@
 
             }
         })
+      }
+      function create_qrcode(){
+        if(flag == 1){
+          // var div_qrcode = document.getElementById("qrcode");
+          // var button_01 = documen.createElement("button");
+
+          new QRCode(document.getElementById("qrcode"),""+sign_record_ID);
+          
+          $('#qrcode').show();
+          $('#cover').css('display','block');
+          $('#cover').css('height',document.body.clientHeight+'px');
+          var div_cover=document.getElementById("cover");
+          div_cover.style.opacity = 0.3;
+          var index = window.location.search;//取问号后面的值
+          var sign_record_ID;
+          if (index.indexOf("?") != -1) {
+              var str = index.substr(1);
+              strs = str.split("&");
+              sign_record_ID = strs[1].split('=')[1];
+          }
+        }
+        else if (flag == 2)
+        {
+          $('#qrcode').show();
+          $('#cover').css('display','block');
+          $('#cover').css('height',document.body.clientHeight+'px');
+          var div_cover=document.getElementById("cover");
+          div_cover.style.opacity = 0.3;
+        }
+        else{
+          alert("二维码以创建");
+        }          
+      }
+      function close_qrcode(){
+        $('#qrcode').hide();
+        $('#cover').css('disply','none');
+        var div_cover=document.getElementById("cover");
+        div_cover.style.opacity=1;
+        //$('#qrcode').empty();
+        flag = 2;
       }
   </script>
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>

@@ -1,19 +1,13 @@
 import main.cn.hnust.mapper.*;
 
-import main.cn.hnust.model.participants;
 import main.cn.hnust.model.sign_record;
 import main.cn.hnust.model.sign_space;
-import main.cn.hnust.model.user;
-import main.cn.hnust.model.user_infomation;
 
 import main.cn.hnust.utils.Mybatis_utils;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 
 import java.io.File;
-import java.sql.Date;
-import java.sql.Time;
-import java.util.*;
 
 import static main.cn.hnust.utils.ExcelDataUtil.use_Excel;
 
@@ -73,9 +67,9 @@ public class mybatis_test {
     public void insert(){
         //获取session对象
         SqlSession sqlSession= Mybatis_utils.getSqlSession();
-        user_infomation_mapper pm=sqlSession.getMapper(user_infomation_mapper.class);
+        user_information_mapper pm=sqlSession.getMapper(user_information_mapper.class);
         sign_space_mapper ssm=sqlSession.getMapper(sign_space_mapper.class);
-        //user_infomation ui=new user_infomation("54qwr","user_ID2","user_name2","department2","dsa" );
+        //user_information ui=new user_information("54qwr","user_ID2","user_name2","department2","dsa" );
         //pm.insert_user_infomation(ui);
         sign_space ss=new sign_space("dsa","space_name2","1805050221" );
         ssm.insert_sign_space(ss);

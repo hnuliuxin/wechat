@@ -1,25 +1,13 @@
 package main.cn.hnust.wechat;
 
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Formatter;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
+import java.io.IOException;
 
 /**
  * 使用@WebServlet注解配置UserInfoServlet,urlPatterns属性指明了WxServlet的访问路径
@@ -27,8 +15,7 @@ import com.alibaba.fastjson.JSONObject;
 @WebServlet(urlPatterns = {"/WxUser"})
 public class UserInfoServlet extends HttpServlet {
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		// TODO 接收、处理、响应由网页发送
 		// 将请求、响应的编码均设置为UTF-8（防止中文乱码）
 		request.setCharacterEncoding("UTF-8");
@@ -38,7 +25,7 @@ public class UserInfoServlet extends HttpServlet {
 		String accesstoken = request.getParameter("access_token");
 		String openid = request.getParameter("openid");
 
-		JSONObject json = null;
+		JSONObject json;
 		System.out.println("通过access token 和 openid 获取 user");
 		json =  getUser(accesstoken,  openid);
 
@@ -70,6 +57,7 @@ public class UserInfoServlet extends HttpServlet {
 		//使用FastJson将Json字符串解析成Json对象
 		JSONObject json = JSON.parseObject(result);
 		String nickName = String.valueOf(json.getString("nickname"));
+		System.out.println("用户名:"+nickName);
 		return json;
 	}
 

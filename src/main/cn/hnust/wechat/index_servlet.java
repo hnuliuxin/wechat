@@ -16,7 +16,7 @@ import java.io.IOException;
         }
 )
 public class index_servlet extends HttpServlet {
-        protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
                 request.setCharacterEncoding("UTF-8");
                 response.setCharacterEncoding("UTF-8");
 

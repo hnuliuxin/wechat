@@ -30,7 +30,7 @@ import java.util.UUID;
         }
 )
 public class create_sign_servlet extends HttpServlet {
-        protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
                 request.setCharacterEncoding("UTF-8");
                 response.setCharacterEncoding("UTF-8");
                 String callback = request.getParameter("callback");
@@ -55,7 +55,7 @@ public class create_sign_servlet extends HttpServlet {
                 }
                 else if(do_type.equals("2")){
                         json_ob.put("msg","test");
-                        int sign_num=0;
+                        int sign_num;
                         String ID= UUID.randomUUID().toString().replaceAll("-","");
                         SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");//设置日期格式
                         Random random=new Random();
@@ -64,11 +64,11 @@ public class create_sign_servlet extends HttpServlet {
                         String start_time;
                         while(true){
                                 sign_num=random.nextInt(9000)+1000;
-
+                                //放到里面是因为可能有刚好到时间的签到记录，这样就不用再继续循环浪费时间
                                 start_time=df.format(new Date());
-                                System.out.println("now sign_num="+sign_num);
+                                //System.out.println("now sign_num="+sign_num);
                                 sign_record record=srm.get_sign_record_List_by_sign_num(sign_num,start_time);
-                                System.out.println("record="+record);
+                                //System.out.println("record="+record);
                                 if(record==null){
                                         break;
                                 }
@@ -77,17 +77,19 @@ public class create_sign_servlet extends HttpServlet {
                         String record_date=request.getParameter("record_date");
                         String user_ID=request.getParameter("user_ID");
                         String end_time=request.getParameter("end_time");
-                        System.out.println("\n"+record_date+"|record_date");
-                        System.out.println(start_time+"|start_time");
-                        System.out.println(end_time+"|end_time\n");
+                        /*
+                        * System.out.println("\n"+record_date+"|record_date");
+                        * System.out.println(start_time+"|start_time");
+                        * System.out.println(end_time+"|end_time\n");
+                        */
                         String location_Latitude=request.getParameter("location_Latitude");
                         String location_Longitude=request.getParameter("location_Longitude");
                         String location_Precision=request.getParameter("location_Precision");
                         sign_record sr=new sign_record(ID, java.sql.Date.valueOf(record_date),user_ID,sign_num
                                 , Time.valueOf(start_time),Time.valueOf(end_time),Double.parseDouble(location_Latitude)
                                 , Double.parseDouble(location_Longitude), Double.parseDouble(location_Precision));
-                        int sta=srm.insert_sign_record(sr);
-                        if(sta==1){
+                        int status=srm.insert_sign_record(sr);
+                        if(status==1){
                                 json_ob.put("status",1);
                                 json_ob.put("msg","OK");
                                 json_ob.put("sign_num",sign_num);

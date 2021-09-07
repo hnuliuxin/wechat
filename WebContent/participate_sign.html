@@ -81,6 +81,7 @@
         function participate_sign(){
 
 			var sign_num = document.getElementById('sign_num').value;
+
 			var index=window.location.search;//取问号后面的值
 			var user_ID=index.substr(index.indexOf("?user_ID=")+9);
 			wx.getLocation({

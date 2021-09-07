@@ -2,6 +2,7 @@ package main.cn.hnust.wechat;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
@@ -37,20 +38,19 @@ public class SignatureServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         String callback=request.getParameter("callback");
-        Map ret = new HashMap();
         //获取前台传来的三个参数
         String timestamp = request.getParameter("timestamp");
         String nonce_str = request.getParameter("nonce_str");
         String url = request.getParameter("url");
 
         String ticket = TokenInfo.accessToken.getTicket();
-        ret = SignatureServlet.sign(ticket, url, nonce_str, timestamp); //获取签名
+        Map<String, String> ret = SignatureServlet.sign(ticket, url, nonce_str, timestamp); //获取签名
 
         Object o = JSONObject.toJSON(ret);
-        if(o==null){
+        if(o==null)
             System.out.println("Is null");
-        }
-        response.getWriter().println(callback+"("+o.toString()+")");
+        else
+            response.getWriter().println(callback+"("+o.toString()+")");
     }
 
     //对所有待签名参数按照字段名的ASCII 码从小到大排序（字典序）后
@@ -62,21 +62,21 @@ public class SignatureServlet extends HttpServlet {
     public static String createLinkString(Map<String, String> params) {
         List<String> keys = new ArrayList<String>(params.keySet());
         Collections.sort(keys);
-        String prestr = "";
+        StringBuilder prestr = new StringBuilder();
         for (int i = 0; i < keys.size(); i++) {
             String key = keys.get(i);
             String value = params.get(key);
             if (i == keys.size() - 1) {//拼接时，不包括最后一个&字符
-                prestr = prestr + key + "=" + value;
+                prestr.append(key).append("=").append(value);
             } else {
-                prestr = prestr + key + "=" + value + "&";
+                prestr.append(key).append("=").append(value).append("&");
             }
         }
-        return prestr;
+        return prestr.toString();
     }
 
     public static Map<String, String> sign(String jsapi_ticket, String url, String nonce_str, String timestamp) {
-        Map<String, String> ret = new HashMap<String, String>();
+        Map<String, String> ret = new HashMap<>();
         String string1;
         String signature = "";
         // 注意这里参数名必须全部小写，且必须有序
@@ -85,12 +85,9 @@ public class SignatureServlet extends HttpServlet {
         try {
             MessageDigest crypt = MessageDigest.getInstance("SHA-1");
             crypt.reset();
-            crypt.update(string1.getBytes("UTF-8"));
+            crypt.update(string1.getBytes(StandardCharsets.UTF_8));
             signature = byteToHex(crypt.digest());
         } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         ret.put("url", url);

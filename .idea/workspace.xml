@@ -1,48 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c4e296ab-548f-41ed-aa4c-08550d844082" name="默认更改列表" comment="">
+    <list default="true" id="c4e296ab-548f-41ed-aa4c-08550d844082" name="默认更改列表" comment="初版">
       <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/create_sign.html" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/create_sign.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebContent/information_sponsor.html" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/information_sponsor.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/js/web_js/create_sign.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/js/web_js/participate_sign.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/loading.html" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/loading.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/location_test.html" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/location_test.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/online_help.html" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/online_help.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/participate_record.html" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/participate_record.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebContent/participate_sign.html" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/participate_sign.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/sign_space.html" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/sign_space.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/sign_up.html" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/sign_up.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebContent/sponsor_record.html" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/sponsor_record.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/cn/hnust/mapper/participants_mapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/cn/hnust/mapper/participants_mapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/cn/hnust/mapper/user_infomation_mapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/cn/hnust/mapper/user_infomation_mapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/cn/hnust/mapper/user_infomation_mapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/cn/hnust/mapper/user_infomation_mapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/cn/hnust/utils/MenuSetting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/cn/hnust/utils/MenuSetting.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/cn/hnust/mapper/user_infomation_mapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/cn/hnust/mapper/user_information_mapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/cn/hnust/mapper/user_infomation_mapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/cn/hnust/mapper/user_information_mapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/cn/hnust/model/user_infomation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/cn/hnust/model/user_information.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/cn/hnust/utils/MessageHandlerUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/cn/hnust/utils/MessageHandlerUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/cn/hnust/wechat/AccessTokenServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/cn/hnust/wechat/AccessTokenServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/cn/hnust/wechat/Location_servlet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/cn/hnust/wechat/NetWorkHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/cn/hnust/wechat/NetWorkHelper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/cn/hnust/wechat/SignatureServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/cn/hnust/wechat/SignatureServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/cn/hnust/wechat/UserInfoServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/cn/hnust/wechat/UserInfoServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/cn/hnust/wechat/WxServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/cn/hnust/wechat/WxServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/cn/hnust/wechat/create_sign_servlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/cn/hnust/wechat/create_sign_servlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/cn/hnust/wechat/index_servlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/cn/hnust/wechat/index_servlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/cn/hnust/wechat/information_sponsor_servlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/cn/hnust/wechat/information_sponsor_servlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/cn/hnust/wechat/information_user_servlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/cn/hnust/wechat/information_user_servlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/cn/hnust/wechat/loading_servlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/cn/hnust/wechat/loading_servlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/cn/hnust/wechat/participate_sign_servlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/cn/hnust/wechat/participate_sign_servlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/cn/hnust/wechat/sign_space_servlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/cn/hnust/wechat/sign_space_servlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/cn/hnust/wechat/sign_up_servlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/cn/hnust/wechat/sign_up_servlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/cn/hnust/wechat/sponsor_record_servlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/cn/hnust/wechat/sponsor_record_servlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis-config.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/mybatis_test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/mybatis_test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/wechat.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/main/cn/hnust/mapper/participants_mapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/cn/hnust/mapper/participants_mapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/main/cn/hnust/mapper/user_infomation_mapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/cn/hnust/mapper/user_infomation_mapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/main/cn/hnust/mapper/user_infomation_mapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/cn/hnust/mapper/user_infomation_mapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/main/cn/hnust/util/MenuSetting.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/main/cn/hnust/utils/MenuSetting.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/cn/hnust/utils/MenuSetting.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/main/cn/hnust/wechat/SignatureServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/cn/hnust/wechat/SignatureServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/cn/hnust/mapper/user_infomation_mapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/cn/hnust/mapper/user_infomation_mapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/cn/hnust/model/user_infomation.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/cn/hnust/wechat/AccessTokenServlet$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/cn/hnust/wechat/AccessTokenServlet$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/cn/hnust/wechat/AccessTokenServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/cn/hnust/wechat/AccessTokenServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/cn/hnust/wechat/Location_servlet.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/cn/hnust/wechat/NetWorkHelper$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/cn/hnust/wechat/NetWorkHelper$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/cn/hnust/wechat/NetWorkHelper$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/cn/hnust/wechat/NetWorkHelper$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/cn/hnust/wechat/NetWorkHelper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/cn/hnust/wechat/NetWorkHelper.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/main/cn/hnust/wechat/create_sign_servlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/cn/hnust/wechat/create_sign_servlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/cn/hnust/wechat/index_servlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/cn/hnust/wechat/index_servlet.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/main/cn/hnust/wechat/information_sponsor_servlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/cn/hnust/wechat/information_sponsor_servlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/cn/hnust/wechat/information_user_servlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/cn/hnust/wechat/information_user_servlet.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/main/cn/hnust/wechat/loading_servlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/cn/hnust/wechat/loading_servlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/main/cn/hnust/wechat/participate_sign_servlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/cn/hnust/wechat/participate_sign_servlet.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/main/cn/hnust/wechat/sign_space_servlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/cn/hnust/wechat/sign_space_servlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/main/cn/hnust/wechat/sponsor_record_servlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/cn/hnust/wechat/sponsor_record_servlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/META-INF/wechat.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/resources/mybatis-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/resources/mybatis-config.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mybatis-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mybatis-config.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/mybatis_test.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/mybatis_test.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -235,16 +238,40 @@
       <option name="presentableId" value="Default" />
       <updated>1614821347364</updated>
     </task>
+    <task id="LOCAL-00001" summary="初版">
+      <created>1630975638235</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1630975638235</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="UnknownFeatures">
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.js" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="初版" />
+    <option name="LAST_COMMIT_MESSAGE" value="初版" />
   </component>
   <component name="WindowStateProjectService">
     <state x="351" y="74" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1630931198636">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="351" y="74" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1630931198636" />
+    <state x="277" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1630982084439">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="277" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.824@0.0.1536.824" timestamp="1630982084439" />
+    <state x="442" y="10" key="CommitChangelistDialog2" timestamp="1631005147498">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="442" y="10" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1631005147498" />
+    <state x="349" y="130" key="DBNavigator.DatasetFilterDialog" timestamp="1630981971911">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="349" y="130" key="DBNavigator.DatasetFilterDialog/0.0.1536.824@0.0.1536.824" timestamp="1630981971911" />
     <state x="299" y="70" key="DBNavigator.ProjectSettingsDialog" timestamp="1630901675623">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -253,22 +280,22 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="549" y="170" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1630910148679" />
-    <state width="1493" height="261" key="GridCell.Tab.0.bottom" timestamp="1630934567909">
+    <state width="1493" height="203" key="GridCell.Tab.0.bottom" timestamp="1631004888505">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1630934567909" />
-    <state width="1493" height="261" key="GridCell.Tab.0.center" timestamp="1630934567908">
+    <state width="1493" height="203" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1631004888505" />
+    <state width="1493" height="203" key="GridCell.Tab.0.center" timestamp="1631004888505">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1630934567908" />
-    <state width="1493" height="261" key="GridCell.Tab.0.left" timestamp="1630934567908">
+    <state width="1493" height="203" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1631004888505" />
+    <state width="1493" height="203" key="GridCell.Tab.0.left" timestamp="1631004888505">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1630934567908" />
-    <state width="1493" height="261" key="GridCell.Tab.0.right" timestamp="1630934567909">
+    <state width="1493" height="203" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1631004888505" />
+    <state width="1493" height="203" key="GridCell.Tab.0.right" timestamp="1631004888505">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1630934567909" />
+    <state width="1493" height="203" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1631004888505" />
     <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1630934567909">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -285,5 +312,9 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1493" height="261" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1630934567909" />
+    <state x="564" y="330" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1631005129574">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="564" y="330" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1631005129574" />
   </component>
 </project>

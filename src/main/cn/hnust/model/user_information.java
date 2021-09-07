@@ -1,16 +1,16 @@
 package main.cn.hnust.model;
 
-public class user_infomation {
+public class user_information {
     private String ID;
     private String user_ID;
     private String user_name;
     private String department;
     private String sign_space_ID;
 
-    public user_infomation() {
+    public user_information() {
     }
 
-    public user_infomation(String ID, String user_ID, String user_name, String department, String sign_space_ID) {
+    public user_information(String ID, String user_ID, String user_name, String department, String sign_space_ID) {
         this.ID = ID;
         this.user_ID = user_ID;
         this.user_name = user_name;
@@ -60,7 +60,7 @@ public class user_infomation {
 
     @Override
     public String toString() {
-        return "user_infomation{" +
+        return "user_information{" +
                 "ID=" + ID +
                 ", user_ID='" + user_ID + '\'' +
                 ", user_name='" + user_name + '\'' +

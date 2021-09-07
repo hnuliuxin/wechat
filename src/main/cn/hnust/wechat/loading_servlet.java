@@ -2,13 +2,10 @@ package main.cn.hnust.wechat;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.JSONPObject;
 import main.cn.hnust.mapper.user_mapper;
 import main.cn.hnust.model.user;
 import main.cn.hnust.utils.Mybatis_utils;
 import org.apache.ibatis.session.SqlSession;
-
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -70,9 +67,7 @@ public class loading_servlet extends HttpServlet{
         String result = netHelper.getHttpsResponse(Url, "");
         System.out.println("获取到的auth_access_token="+result);
         //使用FastJson将Json字符串解析成Json对象
-        JSONObject json = JSON.parseObject(result);
-
-        return json;
+        return JSON.parseObject(result);
     }
 
 }

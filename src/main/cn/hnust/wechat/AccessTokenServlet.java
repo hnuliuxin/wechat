@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 
 /**
  * 用于获取accessToken的Servlet
- * Created by btang
  */
 @WebServlet(
         name = "AccessTokenServlet",
@@ -70,7 +69,7 @@ public class AccessTokenServlet extends HttpServlet {
      */
     private AccessToken getAccessToken(String appId, String appSecret) {
         NetWorkHelper netHelper = new NetWorkHelper();
-        /**
+        /*
          * 接口地址为https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=APPID&secret=APPSECRET，其中grant_type固定写为client_credential即可。
          */
         String Url = String.format("https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=%s&secret=%s", appId, appSecret);

@@ -6,16 +6,12 @@ import main.cn.hnust.model.*;
 import main.cn.hnust.utils.Mybatis_utils;
 import org.apache.ibatis.session.SqlSession;
 
-import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @WebServlet(
@@ -26,7 +22,7 @@ import java.util.List;
         }
 )
 public class information_sponsor_servlet extends HttpServlet {
-        protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
                 request.setCharacterEncoding("UTF-8");
                 response.setCharacterEncoding("UTF-8");
 
@@ -35,18 +31,16 @@ public class information_sponsor_servlet extends HttpServlet {
                 sign_record_mapper srm=sqlSession.getMapper(sign_record_mapper.class);
                 participants_mapper pm=sqlSession.getMapper(participants_mapper.class);
                 user_mapper um=sqlSession.getMapper(user_mapper.class);
-                user_infomation_mapper uim=sqlSession.getMapper(user_infomation_mapper.class);
+                user_information_mapper uim=sqlSession.getMapper(user_information_mapper.class);
 
                 String callback=request.getParameter("callback");
                 JSONObject json_ob=new JSONObject();
 
                 String do_type=request.getParameter("do_type");
-                System.out.println("do_type="+do_type);
-
-                List<participants> participantsList=null;
+                List<participants> participantsList;
                 if(do_type.equals("1")){
                         String user_ID=request.getParameter("user_ID");
-                        String sign_record_ID=request.getParameter("sponsor_ID");
+                        String sign_record_ID=request.getParameter("sign_record_ID");
 
                         sign_record sr=srm.get_sign_record_List_by_ID(sign_record_ID);
                         participantsList=pm.get_participants_by_sign_record_ID(sign_record_ID);
@@ -59,6 +53,8 @@ public class information_sponsor_servlet extends HttpServlet {
                                 json_ob.put("msg","sign record not found");
                         }
                         else{
+                                json_ob.put("status",100);
+                                json_ob.put("msg","success to display");
                                 json_ob.put("sign_record",sr);
                                 json_ob.put("user",u);
                                 json_ob.put("data",participantsList);
@@ -69,27 +65,31 @@ public class information_sponsor_servlet extends HttpServlet {
                 }
                 else if(do_type.equals("2")){
                         String sign_spaces_ID=request.getParameter("sign_spaces_ID");
-                        String sign_record_ID=request.getParameter("sponsor_ID");
+                        String sign_record_ID=request.getParameter("sign_record_ID");
                         participantsList=pm.get_participants_by_sign_record_ID(sign_record_ID);
-                        System.out.println("participantsList="+participantsList);
+                        //System.out.println("participantsList="+participantsList);
 
                         String[] ss=sign_spaces_ID.split(",");
 
 
-                        List<user_infomation> user_infomations=uim.get_user_infomation_List_by_signID_List(ss);
-                        if(user_infomations!=null&&participantsList!=null){
+                        List<user_information> user_informations =uim.get_user_information_List_by_signID_List(ss);
+                        if(user_informations !=null&&participantsList!=null){
                             for(participants pp:participantsList){
-                                for(user_infomation ui:user_infomations){
+                                for(user_information ui: user_informations){
                                     if(pp.getUser_ID().equals(ui.getUser_ID())){
-                                            user_infomations.remove(ui);
+                                            user_informations.remove(ui);
                                             break;
                                     }
                                 }
                             }
-                            json_ob.put("status",1);
+                            json_ob.put("status",200);
                             json_ob.put("msg","OK");
-                            json_ob.put("data",user_infomations);
-                            json_ob.put("data_length",user_infomations.size());
+                            json_ob.put("data", user_informations);
+                            json_ob.put("data_length", user_informations.size());
+                        }
+                        else{
+                            json_ob.put("status",201);
+                            json_ob.put("msg","user_informations or participantsList are empty");
                         }
 
                 }

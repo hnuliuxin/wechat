@@ -25,7 +25,7 @@
         <mapper resource="main/cn/hnust/mapper/participants_mapper.xml"></mapper>
         <mapper resource="main/cn/hnust/mapper/sign_record_mapper.xml"></mapper>
         <mapper resource="main/cn/hnust/mapper/sign_space_mapper.xml"></mapper>
-        <mapper resource="main/cn/hnust/mapper/user_infomation_mapper.xml"></mapper>
+        <mapper resource="main/cn/hnust/mapper/user_information_mapper.xml"></mapper>
         <mapper resource="main/cn/hnust/mapper/user_mapper.xml"></mapper>
     </mappers>
 </configuration>

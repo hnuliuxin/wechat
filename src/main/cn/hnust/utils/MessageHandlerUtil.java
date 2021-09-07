@@ -94,7 +94,7 @@ public class MessageHandlerUtil {
      *
      * @param map
      * @param content
-     * @return
+     * @return String
      */
     private static String buildTextMessage(Map<String,String> map, String content) {
         //发送方帐号

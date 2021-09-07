@@ -2,9 +2,9 @@ package main.cn.hnust.wechat;
 
 import com.alibaba.fastjson.JSONObject;
 import main.cn.hnust.mapper.sign_space_mapper;
-import main.cn.hnust.mapper.user_infomation_mapper;
+import main.cn.hnust.mapper.user_information_mapper;
 import main.cn.hnust.model.sign_space;
-import main.cn.hnust.model.user_infomation;
+import main.cn.hnust.model.user_information;
 import main.cn.hnust.utils.Mybatis_utils;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
@@ -12,7 +12,6 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.ibatis.session.SqlSession;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,8 +19,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -37,12 +34,12 @@ import static main.cn.hnust.utils.ExcelDataUtil.use_Excel;
 )
 public class sign_space_servlet extends HttpServlet {
     @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         request.setCharacterEncoding("UTF-8");
         System.out.println("开始上传");
         SqlSession sqlSession= Mybatis_utils.getSqlSession();
         sign_space_mapper ssm=sqlSession.getMapper(sign_space_mapper.class);
-        user_infomation_mapper uim=sqlSession.getMapper(user_infomation_mapper.class);
+        user_information_mapper uim=sqlSession.getMapper(user_information_mapper.class);
 
 
         String ID= UUID.randomUUID().toString().replaceAll("-","");
@@ -53,16 +50,14 @@ public class sign_space_servlet extends HttpServlet {
         //fu.setSizeThreshold(4096);
         ServletFileUpload upload = new ServletFileUpload(fu);
         upload.setHeaderEncoding("UTF-8");
-        List<FileItem> fileItems = null;
+        List<FileItem> fileItems;
         try {
             fileItems = upload.parseRequest(request);
             String space_name=(fileItems.get(0)).getString("UTF-8");   //获取directory参数
             String user_ID = (fileItems.get(1)).getString("UTF-8");   //获取directory参数
             System.out.println(user_ID+"   "+space_name);
-            Iterator<FileItem> iter = fileItems.iterator();
-            while (iter.hasNext()) {
+            for (FileItem item : fileItems) {
 
-                FileItem item = (FileItem) iter.next();
                 System.out.println(item);
                 item.getString("UTF-8");
                 //忽略其他不是文件域的所有表单信息
@@ -72,6 +67,7 @@ public class sign_space_servlet extends HttpServlet {
                     if ((name1 == null || name1.equals("")) && size == 0) {
                         continue;//跳到while检查条件
                     }
+                    assert name1 != null;
                     int end = name1.length();
                     int begin = name1.lastIndexOf("\\");
                     String newname = name1.substring(begin + 1, end);
@@ -84,23 +80,23 @@ public class sign_space_servlet extends HttpServlet {
                             item.write(savedFile);
                             item.delete();
                             System.out.println("上传结束");
-                            List<Map<String, String>> files=use_Excel(savedFile);
-                            savedFile.delete();
-                            if(files.get(0).get("学号/工号")!=null&&files.get(0).get("姓名")!=null&&files.get(0).get("单位")!=null){
-                                sign_space to_insert=new sign_space(ID,space_name,user_ID );
+                            List<Map<String, String>> files = use_Excel(savedFile);
+                            if(savedFile.delete())
+                                System.out.println("文件删除成功");
+                            if (files.get(0).get("学号/工号") != null && files.get(0).get("姓名") != null && files.get(0).get("单位") != null) {
+                                sign_space to_insert = new sign_space(ID, space_name, user_ID);
                                 ssm.insert_sign_space(to_insert);
-                                for(Map<String, String> file_i:files){
-                                    if(uim.get_user_infomation_by_ID(ID)==null){
-                                        uim.insert_user_infomation(new user_infomation(UUID.randomUUID().toString().replaceAll("-",""),
-                                                file_i.get("学号/工号"),file_i.get("姓名"),file_i.get("单位"),ID ));
+                                for (Map<String, String> file_i : files) {
+                                    if (uim.get_user_information_by_ID(ID) == null) {
+                                        uim.insert_user_information(new user_information(UUID.randomUUID().toString().replaceAll("-", ""),
+                                                file_i.get("学号/工号"), file_i.get("姓名"), file_i.get("单位"), ID));
                                     }
                                 }
-                                json_ob.put("status",1);
+                                json_ob.put("status", 1);
 
-                            }
-                            else {
-                                json_ob.put("status",101);
-                                json_ob.put("msg","文件格式错误");
+                            } else {
+                                json_ob.put("status", 101);
+                                json_ob.put("msg", "文件格式错误");
                             }
 
                         } catch (Exception e) {

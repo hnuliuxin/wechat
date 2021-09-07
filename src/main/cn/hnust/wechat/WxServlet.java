@@ -2,7 +2,6 @@ package main.cn.hnust.wechat;
 
 import main.cn.hnust.utils.MessageHandlerUtil;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +11,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * 使用@WebServlet注解配置WxServlet,urlPatterns属性指明了WxServlet的访问路径
@@ -20,16 +20,10 @@ import java.util.Map;
 public class WxServlet extends HttpServlet {
 
     /**
-     * Token可由开发者可以任意填写，用作生成签名（该Token会和接口URL中包含的Token进行比对，从而验证安全性）
-     * 比如这里我将Token设置为hnust
-     */
-    private final String TOKEN = "123456";
-
-    /**
      * 处理微信服务器发来的消息
      */
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         // TODO 接收、处理、响应由微信服务器转发的用户发送给公众帐号的消息
         // 将请求、响应的编码均设置为UTF-8（防止中文乱码）
         request.setCharacterEncoding("UTF-8");
@@ -51,9 +45,9 @@ public class WxServlet extends HttpServlet {
         response.getWriter().println(result);
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         System.out.println("开始校验签名");
-        /**
+        /*
          * 接收微信服务器发送请求时传递过来的4个参数
          */
         System.out.println(request);
@@ -62,11 +56,16 @@ public class WxServlet extends HttpServlet {
         String nonce = request.getParameter("nonce");//随机数
         String echostr = request.getParameter("echostr");//随机字符串
         //排序
+        /*
+         * Token可由开发者可以任意填写，用作生成签名（该Token会和接口URL中包含的Token进行比对，从而验证安全性）
+         * 比如这里我将Token设置为hnust
+         */
+        String TOKEN = "123456";
         String sortString = sort(TOKEN, timestamp, nonce);
         //加密
         String mySignature = sha1(sortString);
         //校验签名
-        if (mySignature != null && mySignature != "" && mySignature.equals(signature)) {
+        if (mySignature != null && !Objects.equals(mySignature, "") && mySignature.equals(signature)) {
             System.out.println("签名校验通过。");
             //如果检验成功输出echostr，微信服务器接收到此输出，才会确认检验完成。
             //response.getWriter().println(echostr);
@@ -80,10 +79,10 @@ public class WxServlet extends HttpServlet {
     /**
      * 排序方法
      *
-     * @param token
-     * @param timestamp
-     * @param nonce
-     * @return
+     * @param token 标志
+     * @param timestamp 时间戳
+     * @param nonce .
+     * @return String
      */
     public String sort(String token, String timestamp, String nonce) {
         String[] strArray = {token, timestamp, nonce};
@@ -106,12 +105,12 @@ public class WxServlet extends HttpServlet {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-1");
             digest.update(str.getBytes());
-            byte messageDigest[] = digest.digest();
+            byte[] messageDigest = digest.digest();
             // Create Hex String
-            StringBuffer hexString = new StringBuffer();
+            StringBuilder hexString = new StringBuilder();
             // 字节数组转换为 十六进制 数
-            for (int i = 0; i < messageDigest.length; i++) {
-                String shaHex = Integer.toHexString(messageDigest[i] & 0xFF);
+            for (byte b : messageDigest) {
+                String shaHex = Integer.toHexString(b & 0xFF);
                 if (shaHex.length() < 2) {
                     hexString.append(0);
                 }

@@ -97,12 +97,12 @@
 					var str = "";
 
 					for(var i=0;i<t.length;i++){
-						var sponsor_ID = t.data[i].iD;
+						var sign_record_ID = t.data[i].iD;
 						str = "<tbody><tr><td>"
 								+ t.data[i].sign_num
 							+ "</td><td>"
 							+ t.data[i].record_date + "</td><td>" + t.data[i].start_time + "</td><td>"
-							+ "<a href='information_sponsor.html?user_ID=" + user_ID + "&sponsor_ID=" + sponsor_ID + "'><img src='img/xiangxixinxi.png' alt='详细信息' width='25px' height='25px'>" + "</a>" + "</td></tr></tbody>";
+							+ "<a href='information_sponsor.html?user_ID=" + user_ID + "&sign_record_ID=" + sign_record_ID + "'><img src='img/xiangxixinxi.png' alt='详细信息' width='25px' height='25px'>" + "</a>" + "</td></tr></tbody>";
 						$("#sponsor_record").append(str);
 
 					}
