@@ -1,0 +1,45 @@
+create table user(
+    openID varchar(200) primary key not null,
+    user_name varchar(200) not null,
+    user_ID varchar(200) not null,
+    user_password varchar(200) not null
+)charset=utf8;
+// openID,user_name,user_ID,user_password
+
+create table sign_record(
+    ID varchar(200) primary key not null,
+    record_date datetime not null,
+    user_ID varchar(200) not null,
+    sign_num int not null,
+    start_time time not null,
+    end_time time not null,
+    location_Latitude double not null,
+    location_Longitude double not null,
+    location_Precision double not null
+)charset=utf8;
+// ID,record_date,user_ID,sign_num,sta"rt_time,end_time,location_Latitude,location_Longitude,location_Precision 
+
+create table participants(
+    ID varchar(200) primary key not null,
+    user_ID varchar(200) not null,
+    user_name varchar(200) not null,
+    sign_status bool not null,
+    sign_record_ID varchar(200) not null
+)charset=utf8;
+// ID,user_ID,user_name,sign_status,sign_record_ID
+
+create table user_information(
+    ID varchar(200) primary key not null,
+    user_ID varchar(200) not null,
+    user_name varchar(200) not null,
+    department varchar(200) not null,
+    sign_space_ID varchar(200) not null
+)charset=utf8;
+// ID,user_ID,user_name,department,sign_space_ID 
+
+create table sign_space(
+    ID varchar(200) primary key not null,
+    space_name varchar(200) not null,
+    user_ID varchar(200) not null
+) charset=utf8;
+// ID,space_name,user_ID 
