@@ -58,7 +58,7 @@
   	  </table>
       </div>
     </div>
-    <div id="qrcode" style="width: 150px; height:150px;border: 0px solid #999; display: none; position: absolute; top: 50%; left: 35%; z-index: 3; background: #fff">
+    <div id="qrcode" style="border: 0px solid #999; display: none; position: absolute; top: 30%; left:30%; z-index: 3; background: #fff">
       <div>
         <button class="close" style="color: red" onclick="close_qrcode()">
           <img src="img/close.png" style="width: 30px;height: 30px;">
@@ -153,13 +153,7 @@
           // var div_qrcode = document.getElementById("qrcode");
           // var button_01 = documen.createElement("button");
 
-          new QRCode(document.getElementById("qrcode"),""+sign_record_ID);
-          
-          $('#qrcode').show();
-          $('#cover').css('display','block');
-          $('#cover').css('height',document.body.clientHeight+'px');
-          var div_cover=document.getElementById("cover");
-          div_cover.style.opacity = 0.3;
+          //new QRCode(document.getElementById("qrcode"),""+sign_record_ID);
           var index = window.location.search;//取问号后面的值
           var sign_record_ID;
           if (index.indexOf("?") != -1) {
@@ -167,6 +161,20 @@
               strs = str.split("&");
               sign_record_ID = strs[1].split('=')[1];
           }
+          var qrcode = new QRCode('qrcode',{
+            text:""+sign_record_ID,
+            width:150,
+            height:150,
+            colorDark:'#000000',
+            colorRight:'#ffffff',
+            correctLevel:QRCode.CorrectLevel.H
+          });
+          $('#qrcode').show();
+          $('#cover').css('display','block');
+          $('#cover').css('height',document.body.clientHeight+'px');
+          var div_cover=document.getElementById("cover");
+          div_cover.style.opacity = 0.3;
+
         }
         else if (flag == 2)
         {

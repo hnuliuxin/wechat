@@ -32,51 +32,59 @@ public class participate_sign_servlet extends HttpServlet {
     protected void doGet (HttpServletRequest request, HttpServletResponse response) throws IOException {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
-        SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");//设置日期格式
         SqlSession sqlSession= Mybatis_utils.getSqlSession();
         sign_record_mapper srm=sqlSession.getMapper(sign_record_mapper.class);
         participants_mapper pm=sqlSession.getMapper(participants_mapper.class);
         user_mapper um=sqlSession.getMapper(user_mapper.class);
         String callback=request.getParameter("callback");
         JSONObject json_ob=new JSONObject();
-        String sign_num=request.getParameter("sign_num");
+
+        SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");//设置日期格式
+        String do_type=request.getParameter("do_type");
         String user_ID=request.getParameter("user_ID");//参与人
-        String Slocation_Latitude=request.getParameter("location_Latitude");
-        String Slocation_Longitude=request.getParameter("location_Longitude");
-        double location_Latitude=Double.parseDouble(Slocation_Latitude);
-        double location_Longitude=Double.parseDouble(Slocation_Longitude);
-        //通过签到码和当前时间找到 当前正在签到且签到码符合的签到
-        if(Objects.equals(sign_num, ""))
-        {
-            json_ob.put("status",104);
-            json_ob.put("msg","sign_num is null");
-        }
-        else {
-            sign_record sr = srm.get_sign_record_List_by_sign_num(Integer.parseInt(sign_num), df.format(new Date()));
-            if (sr == null) {
-                json_ob.put("status", 101);
-                json_ob.put("msg", "sign_record not found");
-            } else {
-                double location_Latitude_sponsor = sr.getLocation_Latitude();
-                double Location_Longitude_sponsor = sr.getLocation_Longitude();
-                participants p = pm.get_participants_by_userid_signid(user_ID, sr.getID());
-                if (p != null) {
-                    json_ob.put("status", 102);
-                    json_ob.put("msg", "already sign in");
+
+
+        if(Objects.equals(do_type, "1")) {
+            String sign_num=request.getParameter("sign_num");
+            String Slocation_Latitude=request.getParameter("location_Latitude");
+            String Slocation_Longitude=request.getParameter("location_Longitude");
+            double location_Latitude=Double.parseDouble(Slocation_Latitude);
+            double location_Longitude=Double.parseDouble(Slocation_Longitude);
+
+            //通过签到码和当前时间找到 当前正在签到且签到码符合的签到
+            if(Objects.equals(sign_num, ""))
+            {
+                json_ob.put("status",104);
+                json_ob.put("msg","sign_num is null");
+            }
+            else {
+                sign_record sr = srm.get_sign_record_List_by_sign_num(Integer.parseInt(sign_num), df.format(new Date()));
+                if (sr == null) {
+                    json_ob.put("status", 101);
+                    json_ob.put("msg", "sign_record not found");
                 } else {
-                    if (check(location_Latitude, location_Longitude, location_Latitude_sponsor, Location_Longitude_sponsor)) {
-                        participants to_insert = new participants(UUID.randomUUID().toString().replaceAll("-", "")
-                                , user_ID, um.get_user_List_by_user_ID(user_ID).getUser_name(), true, sr.getID());
-                        json_ob.put("status", 1);
-                        json_ob.put("msg", "OK");
-                        pm.insert_participants(to_insert);
+                    double location_Latitude_sponsor = sr.getLocation_Latitude();
+                    double Location_Longitude_sponsor = sr.getLocation_Longitude();
+                    participants p = pm.get_participants_by_userid_signid(user_ID, sr.getID());
+                    if (p != null) {
+                        json_ob.put("status", 102);
+                        json_ob.put("msg", "already sign in");
                     } else {
-                        json_ob.put("status", 103);
-                        json_ob.put("msg", "location fail");
+                        if (check(location_Latitude, location_Longitude, location_Latitude_sponsor, Location_Longitude_sponsor)) {
+                            participants to_insert = new participants(UUID.randomUUID().toString().replaceAll("-", "")
+                                    , user_ID, um.get_user_List_by_user_ID(user_ID).getUser_name(), true, sr.getID());
+                            json_ob.put("status", 1);
+                            json_ob.put("msg", "OK");
+                            pm.insert_participants(to_insert);
+                        } else {
+                            json_ob.put("status", 103);
+                            json_ob.put("msg", "location fail");
+                        }
                     }
                 }
             }
         }
+
         sqlSession.commit();
         sqlSession.close();
         response.getWriter().println(callback+"("+json_ob+")");
