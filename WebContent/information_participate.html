@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="css/materialdesignicons.min.css">
   <link rel="stylesheet" href="css/style.min.css">
   <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+
 </head>
 <body>
 <div class="card">
@@ -22,6 +23,9 @@
   <p>发起时间：<label id="start_time"></label></p>
   <p>结束时间：<label id="end_time"></label></p>
   <hr>
+</div>
+<div>
+  <div id="qrcode" style="width: 100px;height: 100px;margin-top: 15px;"></div>
 </div>
 <p>签到列表</p>
 <div class="table-responsive">
@@ -38,7 +42,7 @@
 <script type="text/javascript">
       $(document).ready(function(){
         var index = window.location.search;//取问号后面的值
-		var user_ID,sponsor_ID;
+		    var user_ID,sponsor_ID;
         if (index.indexOf("?") != -1) {
             var str = index.substr(1);
             strs = str.split("&");

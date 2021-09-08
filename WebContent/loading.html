@@ -5,15 +5,20 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>登录</title>
 <!-- 	<script type="text/javascript" src="js/loading.js"></script> -->
-	<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+	<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script><!-- 引入jquery -->
 </head>
 <body>
 	<script>
 		$(document).ready(function(){
-
-		var appid = "wxf6817d77698a38c9";
-		url_code = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + appid + "&redirect_uri=http%3a%2f%2fdaipeng.nat300.top&response_type=code&scope=snsapi_base&state=123#wechat_redirect";
+			
+		// var json1 = {'code':100, 'id':100};
+		// json1.code;
+		// var json2 = [{'code':100, 'id':100},{'code':100, 'id':100}]
+		// json2[0].code;
+		var appid = "wxf6817d77698a38c9";//微信测试号或公众号的appid
+		url_code = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + appid + "&redirect_uri=http%3a%2f%2fdaipeng.nat300.top&response_type=code&scope=snsapi_base&state=123#wechat_redirect";//使用qppid访问此网站，会得到一个带有用户code的返回url
 		console.log(url_code);
+		//开始分割url
 		var url_str = location.href;
 		var num = url_str.indexOf("?");
 		url_str = url_str.substr(num+1);
@@ -25,7 +30,9 @@
 			}
         }
         code = this.code;
-        var url = "http://daipeng.nat300.top/loading_servlet";
+        //得到code
+        var url = "http://daipeng.nat300.top/loading_servlet";//后端接受数据的Java servlet
+        //将code传送给后端
 		$.ajax({
 			type:"get",
 			url: "http://daipeng.nat300.top/loading_servlet",
@@ -33,13 +40,14 @@
 			dataType:"jsonp",
 			jsonp:"callback",
 			//jsonpCallback:"flightHandler",
+			//后端返回status
 			success:function(t){
 				if(t.status == 0){
-					window.location.href="sign_up.html?open_ID="+t.open_ID;
+					window.location.href="sign_up.html?open_ID="+t.open_ID;//如果status为0，则表示数据库中没有此用户信息，用户需要注册
 				}else{
-					var userID = t.userID;
-					url = "index.html?user_ID=" + userID;
-					window.location.href=url;
+					var userID = t.userID;//userID由后端返回给前端
+					url = "index.html?user_ID=" + userID;//将userID拼接在url上传给下一个页面
+					window.location.href=url;//如果status为1，数据库中存在此用户，则直接进入功能主页。
 				}
 			}
 		 })
