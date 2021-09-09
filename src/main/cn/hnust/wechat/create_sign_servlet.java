@@ -61,11 +61,14 @@ public class create_sign_servlet extends HttpServlet {
                         Random random=new Random();
                         sign_record_mapper srm=sqlSession.getMapper(sign_record_mapper.class);
                         //循环找到没有正在使用的 sign_num
-                        String start_time;
+                        //还是要把定义开始时间放在外面。否则可能会导致开始时间大于结束时间
+                        String start_time=df.format(new Date());
                         while(true){
                                 sign_num=random.nextInt(9000)+1000;
+
                                 //放到里面是因为可能有刚好到时间的签到记录，这样就不用再继续循环浪费时间
-                                start_time=df.format(new Date());
+                                //start_time=df.format(new Date());
+
                                 //System.out.println("now sign_num="+sign_num);
                                 sign_record record=srm.get_sign_record_List_by_sign_num(sign_num,start_time);
                                 //System.out.println("record="+record);

@@ -4,13 +4,16 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="main.cn.hnust.mapper.sign_record_mapper">
     <select id="get_sign_record_List" resultType="main.cn.hnust.model.sign_record">
-        select * from sign_record
+        select * from sign_record;
     </select>
     <select id="get_sign_record_List_by_sign_num" resultType="main.cn.hnust.model.sign_record">
         select * from sign_record where sign_num=#{sign_num} and end_time > #{now_time};
     </select>
     <select id="get_sign_record_List_by_userID" resultType="main.cn.hnust.model.sign_record">
-        select * from sign_record where user_ID=#{user_ID};
+        select * from sign_record where user_ID=#{user_ID} order by record_date desc,start_time desc;
+    </select>
+    <select id="get_sign_record_List_by_ID_and_time" resultType="main.cn.hnust.model.sign_record">
+        select * from sign_record where ID=#{ID} and end_time > #{now_time};
     </select>
     <select id="get_sign_record_List_by_ID" resultType="main.cn.hnust.model.sign_record">
         select * from sign_record where ID=#{ID};

@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @WebServlet(
@@ -45,7 +46,7 @@ public class participate_record_servlet extends HttpServlet {
         for(participants participant:participantsList){
             sign_records.add(srm.get_sign_record_List_by_ID(participant.getSign_record_ID()));
         }
-
+        Collections.sort(sign_records);
         System.out.println("participants:\n"+sign_records);
         json_ob.put("status",1);
         json_ob.put("msg","OK");

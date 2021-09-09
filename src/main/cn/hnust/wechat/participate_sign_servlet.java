@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
@@ -45,6 +46,7 @@ public class participate_sign_servlet extends HttpServlet {
 
 
         if(Objects.equals(do_type, "1")) {
+
             String sign_num=request.getParameter("sign_num");
             String Slocation_Latitude=request.getParameter("location_Latitude");
             String Slocation_Longitude=request.getParameter("location_Longitude");
@@ -84,7 +86,34 @@ public class participate_sign_servlet extends HttpServlet {
                 }
             }
         }
+        else if(Objects.equals(do_type, "2")){
+            String sign_record_ID=request.getParameter("sign_record_ID");
+            System.out.println("sign_record_ID-----"+sign_record_ID);
 
+            sign_record sr=srm.get_sign_record_List_by_ID_and_time(sign_record_ID,df.format(new Date()));
+            if(sr==null) {
+                sr=srm.get_sign_record_List_by_ID(sign_record_ID);
+                if(sr!=null){
+                    json_ob.put("status", 201);
+                    json_ob.put("msg", "sign_record is already over");
+                }else {
+                    json_ob.put("status", 202);
+                    json_ob.put("msg", "sign_record is non-existent");
+                }
+            }else{
+                participants p = pm.get_participants_by_userid_signid(user_ID, sr.getID());
+                if (p != null) {
+                    json_ob.put("status", 203);
+                    json_ob.put("msg", "already sign in");
+                } else {
+                    participants to_insert = new participants(UUID.randomUUID().toString().replaceAll("-", "")
+                            , user_ID, um.get_user_List_by_user_ID(user_ID).getUser_name(), true, sr.getID());
+                    pm.insert_participants(to_insert);
+                    json_ob.put("status", 2);
+                    json_ob.put("msg", "OK");
+                }
+            }
+        }
         sqlSession.commit();
         sqlSession.close();
         response.getWriter().println(callback+"("+json_ob+")");

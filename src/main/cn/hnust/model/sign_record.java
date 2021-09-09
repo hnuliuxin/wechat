@@ -3,7 +3,7 @@ package main.cn.hnust.model;
 import java.sql.Time;
 import java.sql.Date;
 
-public class sign_record {
+public class sign_record implements Comparable<sign_record>{
     private String ID;
     private Date record_date ;
     private String user_ID ;
@@ -114,5 +114,13 @@ public class sign_record {
                 ", location_Longitude=" + location_Longitude +
                 ", location_Precision=" + location_Precision +
                 '}';
+    }
+
+    @Override
+    public int compareTo(sign_record sr) {
+        if(record_date!=sr.record_date){
+            return sr.record_date.compareTo(record_date);
+        }
+        return sr.start_time.compareTo(start_time);
     }
 }

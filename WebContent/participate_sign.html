@@ -12,19 +12,55 @@
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
     <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
     <link rel="stylesheet" href="css/base.css" />
+    <style type="text/css">
+    	.key{height: 120px; width: 250px; position: absolute;left:25%;top:150px;}
+		.kc{width: 160px;float: left;}
+		.key span{float: left; width: 30px;height: 30px; margin:10px 10px 0 10px; line-height:30px;text-align: center;border: 1px solid #666;}
+		.key em{width: 50px;float: left;}
+		.key em i{display: block;width: 30px;height: 30px; margin:10px 0 10px 10px; line-height:30px;text-align: center;border: 1px solid #666; font-style:normal}
+		.key em .next{height: 30px; line-height:30px; margin:10px 0 10px 10px;}
+    </style>
 </head>
 <body>
 	<div class="card">
       <div class="card-header bg-brown">
         <h4>个人签到主页</h4>
-        <button class="btn btn-primary" style="position: absolute;right: 10px;" onclick="scan()">扫一扫</button>
+        <img src="img/scan.png" onclick="scan()" alt="扫描二维码" style="position: absolute;right: 10px;width: 30px;height: 30px;">
       </div>
       <div class="card-body">
-        <p>请输入签到码：<input type="text" maxlength="4" id="sign_num"><!-- <img src="img/saomiao.png" onclick="saomiao()" style="width: 50px;height: 50px;position: absolute;right: 10px"> --></p>
-        <button type="button" onclick="participate_sign()">确定签到</button>
-      </div>
+        <p>请输入签到码：<input type="text" maxlength="4" id="sign_num" readonly="true"></p>
+<!--         <button type="button" onclick="participate_sign()">确定签到</button>
+ -->  </div>
     </div>
+    <!--键盘-->
+    <div class="key">
+      <div class="kc"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><em><i class="del">删除</i></em><span>0</span><em><i class="next" onclick="participate_sign()">签到</i></em>
+      </div>
 	<script type="text/javascript">
+		$(".key").click(function () {
+            return false;
+        });
+
+        $(".key span").click(function(){
+            var key = $(this).text();
+            var emd = document.getElementById('sign_num');
+            var s = emd.value;
+            if(s.length==4)
+            {
+            	alert("数据最大长度为4");
+            }else
+            {
+            	emd.value = emd.value+key;
+            }    
+            });
+        $(".del").click(function(){
+            //$("#sign_num").html($("#sign_num").html().substr(0,$("#sign_num").html().length-1));
+            	var emd = document.getElementById('sign_num');
+            	var s = emd.value;
+            	var num = s.length-1;
+            	emd.value = s.substr(0,num);
+            });
+
 		var createNonceStr = function() {
 		   return Math.random().toString(36).substr(2, 15);
 		};
@@ -81,13 +117,30 @@
 		});
 		 //点击按钮扫描二维码
         function scan(){
+            var index=window.location.search;//取问号后面的值
+			var user_ID=index.substr(index.indexOf("?user_ID=")+9);
             wx.scanQRCode({
                 needResult: 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
                 scanType: ["qrCode"], // 可以指定扫二维码还是一维码，默认二者都有
                 success: function (res) {
                     var result = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
-                    alert("扫描结果："+result);
+                    alert("扫描成功");
                     //window.location.href = result;//因为我这边是扫描后有个链接，然后跳转到该页面
+                    $.ajax({
+                    	type:"get",
+                    	url:'http://daipeng.nat300.top/participate_sign_servlet',
+                    	data:{
+                    		'do_type':'2',
+                    		'sign_record_ID':result,
+                            'user_ID':user_ID
+                    	},
+                    	dataType:'jsonp',
+                    	jsonp:'callback',
+                    	success:function(t){
+                            alert(t.msg);
+                    	}
+
+                    });
                 }
             });
         }
@@ -129,5 +182,6 @@
 			});
 		}
 	</script>
+    </div>
 </body>
 </html>

@@ -155,7 +155,7 @@
 			if(end_time_one == "" || end_time_one == null){
 				alert("请正确输入结束时间");
 			}
-			else if(end_hour < hour || (end_hour == hour && end_minute<minute)){
+			else if(end_hour < hour || (end_hour == hour && end_minute <= minute)){
 				alert("请正确输入结束时间");
 			}
 			else{
