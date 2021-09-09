@@ -1,6 +1,6 @@
 package main.cn.hnust.model;
 
-public class user_information {
+public class user_information implements Comparable<user_information>{
     private String ID;
     private String user_ID;
     private String user_name;
@@ -67,5 +67,9 @@ public class user_information {
                 ", department='" + department + '\'' +
                 ", sign_space_ID=" + sign_space_ID +
                 '}';
+    }
+    @Override
+    public int compareTo(user_information ui){
+        return user_ID.compareTo(ui.user_ID);
     }
 }

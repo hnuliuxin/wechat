@@ -7,7 +7,7 @@
         select * from participants
     </select>
     <select id="get_participants_by_sign_record_ID" resultType="main.cn.hnust.model.participants">
-        select * from participants where sign_record_ID=#{sign_record_ID};
+        select * from participants where sign_record_ID=#{sign_record_ID} order by user_ID;
     </select>
     <select id="get_participants_by_userid_signid" resultType="main.cn.hnust.model.participants">
         select * from participants where user_ID=#{user_ID} and sign_record_ID=#{sign_record_ID};

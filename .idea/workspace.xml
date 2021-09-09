@@ -1,8 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c4e296ab-548f-41ed-aa4c-08550d844082" name="默认更改列表" comment="">
+    <list default="true" id="c4e296ab-548f-41ed-aa4c-08550d844082" name="默认更改列表" comment="version1.4--完善页面，列表排序">
+      <change afterPath="$PROJECT_DIR$/WebContent/img/commit.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WebContent/js/bootstrap.bundle.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WebContent/js/jquery.slim.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WebContent/js/jweixin-1.6.0.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WebContent/js/semantic.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebContent.zip" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebContent/create_sign.html" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/create_sign.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebContent/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebContent/information_participate.html" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/information_participate.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebContent/information_sponsor.html" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/information_sponsor.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebContent/participate_sign.html" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/participate_sign.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebContent/sign_space.html" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/sign_space.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/cn/hnust/mapper/participants_mapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/cn/hnust/mapper/participants_mapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/cn/hnust/model/sign_record.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/cn/hnust/model/sign_record.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/cn/hnust/model/user_information.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/cn/hnust/model/user_information.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/cn/hnust/utils/ExcelDataUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/cn/hnust/utils/ExcelDataUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/cn/hnust/wechat/information_sponsor_servlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/cn/hnust/wechat/information_sponsor_servlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/cn/hnust/wechat/information_user_servlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/cn/hnust/wechat/information_user_servlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/cn/hnust/wechat/sign_space_servlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/cn/hnust/wechat/sign_space_servlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/cn/hnust/mapper/participants_mapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/cn/hnust/mapper/participants_mapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/cn/hnust/utils/ExcelDataUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/cn/hnust/utils/ExcelDataUtil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/cn/hnust/wechat/information_sponsor_servlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/cn/hnust/wechat/information_sponsor_servlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/cn/hnust/wechat/information_user_servlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/cn/hnust/wechat/information_user_servlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/cn/hnust/wechat/sign_space_servlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/cn/hnust/wechat/sign_space_servlet.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -276,25 +301,26 @@
     <MESSAGE value="version1.1--&#10;增添二维码扫码辅助签到功能" />
     <MESSAGE value="version1.2--&#10;增添二维码扫码辅助签到功能" />
     <MESSAGE value="version1.3--增添签到页面键盘" />
-    <option name="LAST_COMMIT_MESSAGE" value="version1.3--增添签到页面键盘" />
+    <MESSAGE value="version1.4--完善页面，列表排序" />
+    <option name="LAST_COMMIT_MESSAGE" value="version1.4--完善页面，列表排序" />
   </component>
   <component name="WindowStateProjectService">
     <state x="351" y="74" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1630931198636">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="351" y="74" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1630931198636" />
-    <state x="574" y="121" key="#com.intellij.ide.util.MemberChooser" timestamp="1631090480368">
+    <state x="574" y="121" key="#com.intellij.ide.util.MemberChooser" timestamp="1631177778067">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="574" y="121" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1631090480368" />
+    <state x="574" y="121" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1631177778067" />
     <state x="277" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1630982084439">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="277" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.824@0.0.1536.824" timestamp="1630982084439" />
-    <state x="442" y="0" key="CommitChangelistDialog2" timestamp="1631150589283">
+    <state x="442" y="0" key="CommitChangelistDialog2" timestamp="1631177635804">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="442" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1631150589283" />
+    <state x="442" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1631177635804" />
     <state x="349" y="130" key="DBNavigator.DatasetFilterDialog" timestamp="1630981971911">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -311,22 +337,22 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="549" y="170" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1630910148679" />
-    <state width="1493" height="205" key="GridCell.Tab.0.bottom" timestamp="1631150486529">
+    <state width="1493" height="42" key="GridCell.Tab.0.bottom" timestamp="1631177635831">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="205" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1631150486529" />
-    <state width="1493" height="205" key="GridCell.Tab.0.center" timestamp="1631150486529">
+    <state width="1493" height="42" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1631177635831" />
+    <state width="1493" height="42" key="GridCell.Tab.0.center" timestamp="1631177635831">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="205" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1631150486529" />
-    <state width="1493" height="205" key="GridCell.Tab.0.left" timestamp="1631150486529">
+    <state width="1493" height="42" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1631177635831" />
+    <state width="1493" height="42" key="GridCell.Tab.0.left" timestamp="1631177635831">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="205" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1631150486529" />
-    <state width="1493" height="205" key="GridCell.Tab.0.right" timestamp="1631150486529">
+    <state width="1493" height="42" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1631177635831" />
+    <state width="1493" height="42" key="GridCell.Tab.0.right" timestamp="1631177635831">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="205" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1631150486529" />
+    <state width="1493" height="42" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1631177635831" />
     <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1630934567909">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

@@ -55,7 +55,6 @@ public class sign_space_servlet extends HttpServlet {
             fileItems = upload.parseRequest(request);
             String space_name=(fileItems.get(0)).getString("UTF-8");   //获取directory参数
             String user_ID = (fileItems.get(1)).getString("UTF-8");   //获取directory参数
-            System.out.println(user_ID+"   "+space_name);
             for (FileItem item : fileItems) {
 
                 System.out.println(item);
@@ -89,7 +88,7 @@ public class sign_space_servlet extends HttpServlet {
                                 for (Map<String, String> file_i : files) {
                                     if (uim.get_user_information_by_ID(ID) == null) {
                                         uim.insert_user_information(new user_information(UUID.randomUUID().toString().replaceAll("-", ""),
-                                                file_i.get("学号/工号"), file_i.get("姓名"), file_i.get("单位"), ID));
+                                                file_i.get("学号/工号").substring(0,file_i.get("学号/工号").indexOf('.')), file_i.get("姓名"), file_i.get("单位"), ID));
                                     }
                                 }
                                 json_ob.put("status", 1);

@@ -10,6 +10,10 @@
 	<link rel="stylesheet" href="css/style.min.css">
 	<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="js/web_js/sign_space.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/jquery.slim.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
+
 	<style> 
         .black_overlay{ 
             display: none; 
@@ -27,9 +31,9 @@
         .white_content { 
             display: none; 
             position: absolute; 
-            top: 25%; 
-            left: 25%; 
-            width: 55%; 
+            top: 20%;
+            left: 15%;
+            width: 70%;
             height: 55%; 
             padding: 20px; 
             border: 10px; 
@@ -42,10 +46,9 @@
 <body>
 	<div class="card">
       <div class="card-header bg-info">
-        <button class="btn btn-w-md btn-round btn-primary" onclick="openDialog()">新建+</button>
+        <h3>签到空间管理<button style="position:absolute;right:20px" class="btn btn-w-md btn-round btn-primary " onclick="openDialog()">新建+</button></h3>
       </div>
       <div class="white_content" id="light">
-
 	      <form class="form-horizontal" action="" method="post" enctype="multipart/form-data" onsubmit="return false;" id="light1">
 	          <div class="form-group">
 	            <label class="col-xs-12">空间名称</label>
@@ -54,7 +57,7 @@
 	            </div>
 	          </div>
 	          <div class="form-group">
-	            <label class="col-xs-12">正确格式的excel文件<a href="index.html"><img src="img/wenhao1.png" width="20px" height="20px"></a></label>
+	            <label class="col-xs-12">正确的excel文件格式&nbsp&nbsp<img src="img/wenhao1.png" width="20px" height="20px" onclick="help()"></label>
 					<hr>
 	            <div class="col-xs-12">
 	              <input type="file" id="excel_file" accept="application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
@@ -62,44 +65,73 @@
 	          </div>
 	          <div class="form-group">
 	            <div class="col-xs-12">
-	              <button class="btn btn-primary" type="submit" onclick="sign_space()">提交</button>
+	              <button class="btn btn-primary btn-label" type="submit" onclick="sign_space()">
+					  <label>
+						  <img src="img/commit.png" style="width:30px;height:30px;">
+					  </label>提交
+				  </button>
+				  <button class="btn btn-primary" type="submit" onclick="cancle()" style="position:absolute;right:20px;">
+					  取消
+				  </button>
 	            </div>
 	          </div>
 	        </form>
+	        <div class="card-foot" style="display: none;" id="help_online">
+    			<img src="img/示例.png" alt="签到空间文件格式">
+      		</div>
 	    </div>
-      <div class="card-body">
-        <p>内容...</p>
-      </div>
-    </div>
+<!--      <div style="height:0px" class="card-body">-->
+<!--      </div>-->
+      
+    </div>   
     <script type="text/javascript">
+    	function cancle(){
+    		document.getElementById("light").style.display = "none";
+    	}
+    	var flag = 1;
+    	function help(){
+    		if(flag == 1)
+    		{
+    			document.getElementById("help_online").style.display = "block";
+    			flag = 0;
+    		}
+    		else
+    		{
+    			document.getElementById("help_online").style.display = "none";
+    			flag = 1;
+    		}
+    	}
+		//提交文件
+		function sign_space(){
+		       var index=window.location.search;//取问号后面的值
+			   var user_ID=index.substr(index.indexOf("?user_ID=")+9);
+			   var space_name=document.getElementById('space_name').value;
+               var fileObj = $("#excel_file")[0].files[0]; //获取file对象
+			   var FileController = "http://daipeng.nat300.top/sign_space_servlet";//此处填写servlet路径
+			   var form = new FormData();
+			   form.append("String",space_name);
+			   form.append("String",user_ID);
+			   if(space_name=="")
+			   {
+			   		alert("名称不能为空");
+			   		exit(0);
+			   }
+			   form.append("file", fileObj);
 
-    		//提交文件
-			function sign_space(){
-			       var index=window.location.search;//取问号后面的值
-				   var user_ID=index.substr(index.indexOf("?user_ID=")+9);
-				   var space_name=document.getElementById('space_name').value;
-                   var fileObj = $("#excel_file")[0].files[0]; //获取file对象
-				   var FileController = "http://daipeng.nat300.top/sign_space_servlet";//此处填写servlet路径
-				   var form = new FormData();
-				   form.append("String",space_name);
-				   form.append("String",user_ID);
-				   alert(space_name);
-				   form.append("file", fileObj);
+			   var xhr = new XMLHttpRequest();
+				xhr.open("post", FileController, true);
+				xhr.onload = function (t) {
+					if(t.status == 0){
+						alert(t.msg);
+					}else{
+						alert("上传完成!");
+						var url="index.html?user_ID="+user_ID;
+						window.location.href=url;
+					}
 
-				   var xhr = new XMLHttpRequest();
-					xhr.open("post", FileController, true);
-					xhr.onload = function (t) {
-						if(t.status == 0){
-							alert(t.msg);
-						}else{
-							alert("上传完成!");
-							var url="index.html?user_ID="+user_ID;
-							window.location.href=url;
-						}
-
-					};
-					xhr.send(form);
-			}
+				};
+				xhr.send(form);
+		}
     	function openDialog(){
     		document.getElementById('light').style.display='block';
     	}

@@ -19,9 +19,9 @@ public class ExcelDataUtil {
         try {
              maps = readExcel(file);
             //maps.forEach(System.out::println);
-            for(Map<String,String> m:maps){
-                System.out.println(m);
-            }
+//            for(Map<String,String> m:maps){
+//                System.out.println(m);
+//            }
             return maps;
         }catch (Exception e){
             System.out.println(e);

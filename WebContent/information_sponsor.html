@@ -32,9 +32,10 @@
   		<p>发起时间：<label id="start_time"></label></p>
   		<p>结束时间：<label id="end_time"></label></p>
       <div>
-      <a class="btn btn-primary" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">签到空间</a>
-
-      <button onclick="information_sponsor_button()" class="btn btn-primary" style="float: right;">确定</button>
+          <hr>
+          <a class="btn btn-primary" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">签到空间</a>
+          <button onclick="information_sponsor_button()" class="btn btn-primary" style="float: right;">确定</button>
+          
       </div>
       
         <div class="collapse m-t-10" id="collapseExample">
@@ -43,9 +44,7 @@
 
           </ul>
         </div>
-  		<hr>
   	</div>
-  	<p>签到列表</p>
   	<div class="table-responsive">
         <table class="table" id="information_sponsor">
           <thead>
@@ -109,6 +108,7 @@
             }
 
             var strs = "";
+
             for(var i=0;i<t.sign_space_length;i++){
               strs = "<li><input type='checkbox' name = 'space' value = '" + t.sign_spaces[i].iD + "'/>" + t.sign_spaces[i].space_name +"</li>";
               sign_space_ID[i] = t.sign_spaces[i].iD;

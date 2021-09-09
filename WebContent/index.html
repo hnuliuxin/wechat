@@ -10,22 +10,27 @@
 	<link rel="stylesheet" href="css/style.min.css">
 	<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
 	<script type="text/javascript" src="js/web_js/index.js"></script>
+	<style type="text/css">
+		.body_01{
+			background: url(img/pikaqiu.gif) no-repeat
+		}
+	</style>
 </head>
 <body>
 	<div>
 		<table class="table table-bordered">
 			<thead>
 				<tr>
-					<th align="center"><p><img src="img/qiandao2.png" width="20px" height="20px"></p><button class ="btn btn-link" onclick="startsignin()">发起签到</button></th>
-					<th><p><img src="img/qiandao1.png" width="20px" height="20px"></p><button class ="btn btn-link" onclick="participate_sign()">我要签到</button></th>
-					<th><p><img src="img/jilu1.png" width="20px" height="20px"></p><button class ="btn btn-link" onclick="sponsor_record()">发起签到记录</button></th>
+					<th align="center"><p><img src="img/qiandao2.png" width="20px" height="20px" onclick="startsignin()"></p><button class ="btn btn-link" onclick="startsignin()">发起签到</button></th>
+					<th><p><img src="img/qiandao1.png" width="20px" height="20px" onclick="participate_sign()"></p><button class ="btn btn-link" onclick="participate_sign()">我要签到</button></th>
+					<th><p><img src="img/jilu1.png" width="20px" height="20px" onclick="sponsor_record()"></p><button class ="btn btn-link" onclick="sponsor_record()">发起签到记录</button></th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
-					<td><p><img src="img/jilu2.png" width="20px" height="20px"></p><button class ="btn btn-link" onclick="participate_record()">参与签到记录</button></td>
-					<td><p><img src="img/kongjian1.png" width="20px" height="20px"></p><button class ="btn btn-link" onclick="sign_space()">签到空间</button></td>
-					<td><p><img src="img/bangzhu1.png" width="20px" height="20px"></p><button class ="btn btn-link" onclick="online_help()">在线帮助</button></td>
+					<td><p><img src="img/jilu2.png" width="20px" height="20px" onclick="participate_record()"></p><button class ="btn btn-link" onclick="participate_record()">参与签到记录</button></td>
+					<td><p><img src="img/kongjian1.png" width="20px" height="20px" onclick="sign_space()"></p><button class ="btn btn-link" onclick="sign_space()">签到空间</button></td>
+					<td><p><img src="img/bangzhu1.png" width="20px" height="20px" onclick="online_help()"></p><button class ="btn btn-link" onclick="online_help()">在线帮助</button></td>
 				</tr>
 			</tbody>
 			<tfoot>
@@ -34,6 +39,9 @@
 				</tr>
 			</tfoot>
 		</table>
+	</div>
+	<div class="body_01" style="width: 100%;height: 100%">
+		
 	</div>
 </body>
 </html>

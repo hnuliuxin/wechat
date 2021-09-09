@@ -24,20 +24,26 @@
     <autoscroll-to-editor value="false" />
     <autoscroll-from-editor value="true" />
     <show-object-properties value="true" />
-    <loaded-nodes />
+    <loaded-nodes>
+      <connection connection-id="0fdb99e6-0e46-4c7b-997f-6fbcbe726b68">
+        <schema name="wechat_database" object-types="table, view" />
+      </connection>
+    </loaded-nodes>
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="0fdb99e6-0e46-4c7b-997f-6fbcbe726b68">
-      <console name="Connection" type="STANDARD" schema="wechat_database" session="Main"><![CDATA[#select * from sign_record;
+      <console name="Connection" type="STANDARD" schema="wechat_database" session="Main"><![CDATA[--delete from user;
+--delete from user_information;
+--delete from participants;
+--delete from sign_record;
+--delete from sign_space;
 
-#delete from user;
-#delete from user_infomation;
-#delete from participants;
-#delete from sign_record;
-delete from sign_space;
 
-#select * from sign_space;
-#select * from user;]]></console>
+--select * from sign_record;
+select * from sign_space;
+--select * from user_information;
+--select * from user;
+--select * from participants;]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">

@@ -82,6 +82,8 @@ public class information_sponsor_servlet extends HttpServlet {
                                     }
                                 }
                             }
+                            // TODO: 2021/9/9 数据表排序
+
                             json_ob.put("status",200);
                             json_ob.put("msg","OK");
                             json_ob.put("data", user_informations);

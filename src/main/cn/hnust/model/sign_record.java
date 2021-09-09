@@ -118,9 +118,8 @@ public class sign_record implements Comparable<sign_record>{
 
     @Override
     public int compareTo(sign_record sr) {
-        if(record_date!=sr.record_date){
+        if(record_date!=sr.record_date)
             return sr.record_date.compareTo(record_date);
-        }
         return sr.start_time.compareTo(start_time);
     }
 }

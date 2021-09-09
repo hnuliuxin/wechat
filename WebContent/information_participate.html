@@ -38,17 +38,17 @@
 <script type="text/javascript">
       $(document).ready(function(){
         var index = window.location.search;//取问号后面的值
-		    var user_ID,sponsor_ID;
+		    var user_ID,sign_record_ID;
         if (index.indexOf("?") != -1) {
             var str = index.substr(1);
             strs = str.split("&");
             user_ID = strs[0].split('=')[1];
-            sponsor_ID = strs[1].split('=')[1];
+            sign_record_ID = strs[1].split('=')[1];
         }
         $.ajax({
           type:"get",
           url:'http://daipeng.nat300.top/information_user_servlet',
-          data:{'user_ID':user_ID,'sponsor_ID':sponsor_ID},
+          data:{'user_ID':user_ID,'sign_record_ID':sign_record_ID},
           dataType:'jsonp',
           jsonp:'callback',
           success:function(t){
