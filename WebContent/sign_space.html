@@ -41,14 +41,21 @@
             z-index:1002; 
             overflow: auto; 
         } 
+        .cover{pointer-events: none;}
+        .normal{}
     </style> 
 </head>
 <body>
-	<div class="card">
+	<div class="card" id="cover">
       <div class="card-header bg-info">
         <h3>签到空间管理<button style="position:absolute;right:20px" class="btn btn-w-md btn-round btn-primary " onclick="openDialog()">新建+</button></h3>
       </div>
-      <div class="white_content" id="light">
+      
+<!--      <div style="height:0px" class="card-body">-->
+<!--      </div>-->
+      
+    </div>   
+    <div class="white_content" id="light" style="overflow-x: hidden;">
 	      <form class="form-horizontal" action="" method="post" enctype="multipart/form-data" onsubmit="return false;" id="light1">
 	          <div class="form-group">
 	            <label class="col-xs-12">空间名称</label>
@@ -80,13 +87,11 @@
     			<img src="img/示例.png" alt="签到空间文件格式">
       		</div>
 	    </div>
-<!--      <div style="height:0px" class="card-body">-->
-<!--      </div>-->
-      
-    </div>   
     <script type="text/javascript">
     	function cancle(){
     		document.getElementById("light").style.display = "none";
+    		document.getElementById('cover').style.opacity = 1;
+    		document.getElementById("cover").className = "normal";
     	}
     	var flag = 1;
     	function help(){
@@ -119,21 +124,22 @@
 			   form.append("file", fileObj);
 
 			   var xhr = new XMLHttpRequest();
-				xhr.open("post", FileController, true);
-				xhr.onload = function (t) {
-					if(t.status == 0){
-						alert(t.msg);
-					}else{
-						alert("上传完成!");
-						var url="index.html?user_ID="+user_ID;
-						window.location.href=url;
-					}
+			   xhr.open("post", FileController, true);
+			   var data;
+			   var json;
+			   xhr.onload = function () {
+					data = xhr.responseText;
+					json = JSON.parse(data);
+<!--					alert(json.msg);-->
+<!--					alert(json.status);-->
+				}
 
-				};
 				xhr.send(form);
 		}
     	function openDialog(){
     		document.getElementById('light').style.display='block';
+    		document.getElementById('cover').style.opacity = 0.3;
+    		document.getElementById('cover').className = "cover";
     	}
     </script>
 </body>

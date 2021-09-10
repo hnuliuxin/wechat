@@ -78,10 +78,9 @@ public class sign_space_servlet extends HttpServlet {
                             File savedFile = new File("D:\\学习\\wechat\\文件", name1);//用原文件名，作为上传文件的文件名。“/code”为目标路径
                             item.write(savedFile);
                             item.delete();
-                            System.out.println("上传结束");
+                            //System.out.println("上传结束");
                             List<Map<String, String>> files = use_Excel(savedFile);
-                            if(savedFile.delete())
-                                System.out.println("文件删除成功");
+                            savedFile.delete();
                             if (files.get(0).get("学号/工号") != null && files.get(0).get("姓名") != null && files.get(0).get("单位") != null) {
                                 sign_space to_insert = new sign_space(ID, space_name, user_ID);
                                 ssm.insert_sign_space(to_insert);
@@ -92,10 +91,10 @@ public class sign_space_servlet extends HttpServlet {
                                     }
                                 }
                                 json_ob.put("status", 1);
-
+                                json_ob.put("msg","success");
                             } else {
                                 json_ob.put("status", 101);
-                                json_ob.put("msg", "文件格式错误");
+                                json_ob.put("msg", "Presentation Error");
                             }
 
                         } catch (Exception e) {

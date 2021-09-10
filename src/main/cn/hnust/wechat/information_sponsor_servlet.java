@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
+import java.util.*;
 
 @WebServlet(
         urlPatterns = "/information_sponsor_servlet",
@@ -82,8 +82,8 @@ public class information_sponsor_servlet extends HttpServlet {
                                     }
                                 }
                             }
-                            // TODO: 2021/9/9 数据表排序
-
+                            Collections.sort(user_informations);
+                            user_informations=remove_duplication(user_informations);
                             json_ob.put("status",200);
                             json_ob.put("msg","OK");
                             json_ob.put("data", user_informations);
@@ -98,4 +98,12 @@ public class information_sponsor_servlet extends HttpServlet {
                 sqlSession.close();
                 response.getWriter().println(callback+"("+json_ob+")");
         }
+    public static List remove_duplication(List<user_information> list) {
+        TreeSet set = new TreeSet(list);
+        //把List集合所有元素清空
+        list.clear();
+        //把HashSet对象添加至List集合
+        list.addAll(set);
+        return list;
+    }
 }

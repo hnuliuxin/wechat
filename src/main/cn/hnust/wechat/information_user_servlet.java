@@ -44,7 +44,7 @@ public class information_user_servlet extends HttpServlet {
                 System.out.println(sign_record_ID);
                 sign_record sr=srm.get_sign_record_List_by_ID(sign_record_ID);
                 List<participants> participantsList=pm.get_participants_by_sign_record_ID(sign_record_ID);
-                user u=um.get_user_List_by_user_ID(user_ID);
+                user u=um.get_user_List_by_user_ID(sr.getUser_ID());
                 if(sr==null){
                     json_ob.put("status",101);
                     json_ob.put("msg","sign record not found");
