@@ -55,7 +55,6 @@ public class ExcelDataUtil {
             for (int index = 0; index < row.getPhysicalNumberOfCells(); index++) {
                 XSSFCell titleCell = titleRow.getCell(index);
                 XSSFCell cell = row.getCell(index);
-                // cell.setCellType(XSSFCell.CELL_TYPE_STRING); 过期，使用下面替换
                 cell.setCellType(CellType.STRING);
                 if (cell.getStringCellValue().equals("")) {
                     continue;

@@ -78,18 +78,28 @@ public class sign_space_servlet extends HttpServlet {
                             File savedFile = new File("D:\\学习\\wechat\\文件", name1);//用原文件名，作为上传文件的文件名。“/code”为目标路径
                             item.write(savedFile);
                             item.delete();
-                            //System.out.println("上传结束");
+                            System.out.println("上传结束");
                             List<Map<String, String>> files = use_Excel(savedFile);
-                            savedFile.delete();
-                            if (files.get(0).get("学号/工号") != null && files.get(0).get("姓名") != null && files.get(0).get("单位") != null) {
-                                sign_space to_insert = new sign_space(ID, space_name, user_ID);
-                                ssm.insert_sign_space(to_insert);
+
+                            if(!ssm.get_sign_space_by_user_ID_and_space_name(user_ID,space_name).isEmpty()){
+                                json_ob.put("status",102);
+                                json_ob.put("msg","already have this sign space");
+                            }
+                            else if (files.get(0).get("学号/工号") != null && files.get(0).get("姓名") != null && files.get(0).get("单位") != null) {
                                 for (Map<String, String> file_i : files) {
                                     if (uim.get_user_information_by_ID(ID) == null) {
-                                        uim.insert_user_information(new user_information(UUID.randomUUID().toString().replaceAll("-", ""),
-                                                file_i.get("学号/工号").substring(0,file_i.get("学号/工号").indexOf('.')), file_i.get("姓名"), file_i.get("单位"), ID));
+                                        if(file_i.get("学号/工号").indexOf('.')!=-1)
+                                            uim.insert_user_information(new user_information(UUID.randomUUID().toString().replaceAll("-", ""),
+                                                file_i.get("学号/工号").substring(0, file_i.get("学号/工号").indexOf('.')), file_i.get("姓名"), file_i.get("单位"), ID));
+                                        else
+                                            uim.insert_user_information(new user_information(UUID.randomUUID().toString().replaceAll("-", ""),
+                                                    file_i.get("学号/工号"), file_i.get("姓名"), file_i.get("单位"), ID));
                                     }
                                 }
+                                sign_space to_insert = new sign_space(ID, space_name, user_ID);
+                                ssm.insert_sign_space(to_insert);
+                                savedFile.delete();
+                                System.out.println("插入完成");
                                 json_ob.put("status", 1);
                                 json_ob.put("msg","success");
                             } else {

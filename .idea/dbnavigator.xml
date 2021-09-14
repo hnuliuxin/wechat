@@ -34,9 +34,11 @@
 --delete from sign_record;
 --delete from sign_space;
 
+--select * from sign_record where `user_ID`='1805050221'  and end_time > '9:35:14' and record_date = '2021-9-14';
+-- select * from sign_space where user_ID='1805050221' ;
 
 --select * from sign_record;
-select * from sign_space;
+--select * from sign_space;
 --select * from user_information;
 --select * from user;
 --select * from participants;]]></console>

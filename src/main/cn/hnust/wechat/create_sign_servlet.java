@@ -57,12 +57,14 @@ public class create_sign_servlet extends HttpServlet {
                         json_ob.put("msg","test");
                         int sign_num;
                         String ID= UUID.randomUUID().toString().replaceAll("-","");
+                        SimpleDateFormat d = new SimpleDateFormat("YYYY-MM-dd");
                         SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");//设置日期格式
                         Random random=new Random();
                         sign_record_mapper srm=sqlSession.getMapper(sign_record_mapper.class);
                         //循环找到没有正在使用的 sign_num
                         //还是要把定义开始时间放在外面。否则可能会导致开始时间大于结束时间
                         String start_time=df.format(new Date());
+                        String day=d.format(new Date());
                         while(true){
                                 sign_num=random.nextInt(9000)+1000;
 
@@ -70,7 +72,7 @@ public class create_sign_servlet extends HttpServlet {
                                 //start_time=df.format(new Date());
 
                                 //System.out.println("now sign_num="+sign_num);
-                                sign_record record=srm.get_sign_record_List_by_sign_num(sign_num,start_time);
+                                sign_record record=srm.get_sign_record_List_by_sign_num(sign_num,day,start_time);
                                 //System.out.println("record="+record);
                                 if(record==null){
                                         break;

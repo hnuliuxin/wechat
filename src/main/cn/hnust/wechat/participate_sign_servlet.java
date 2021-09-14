@@ -40,6 +40,7 @@ public class participate_sign_servlet extends HttpServlet {
         String callback=request.getParameter("callback");
         JSONObject json_ob=new JSONObject();
 
+        SimpleDateFormat d = new SimpleDateFormat("YYYY-MM-dd");
         SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");//设置日期格式
         String do_type=request.getParameter("do_type");
         String user_ID=request.getParameter("user_ID");//参与人
@@ -60,7 +61,7 @@ public class participate_sign_servlet extends HttpServlet {
                 json_ob.put("msg","sign_num is null");
             }
             else {
-                sign_record sr = srm.get_sign_record_List_by_sign_num(Integer.parseInt(sign_num), df.format(new Date()));
+                sign_record sr = srm.get_sign_record_List_by_sign_num(Integer.parseInt(sign_num),d.format(new Date()),df.format(new Date()));
                 if (sr == null) {
                     json_ob.put("status", 101);
                     json_ob.put("msg", "sign_record not found");
@@ -88,9 +89,9 @@ public class participate_sign_servlet extends HttpServlet {
         }
         else if(Objects.equals(do_type, "2")){
             String sign_record_ID=request.getParameter("sign_record_ID");
-            System.out.println("sign_record_ID-----"+sign_record_ID);
+//            System.out.println("sign_record_ID-----"+sign_record_ID);
 
-            sign_record sr=srm.get_sign_record_List_by_ID_and_time(sign_record_ID,df.format(new Date()));
+            sign_record sr=srm.get_sign_record_List_by_ID_and_data_and_time(sign_record_ID,d.format(new Date()),df.format(new Date()));
             if(sr==null) {
                 sr=srm.get_sign_record_List_by_ID(sign_record_ID);
                 if(sr!=null){

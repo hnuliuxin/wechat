@@ -8,6 +8,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 
 import static main.cn.hnust.utils.ExcelDataUtil.use_Excel;
 
@@ -42,26 +45,7 @@ public class mybatis_test {
         use_Excel(file);
     }
 
-    @Test
-    public void sign_record_test(){
 
-        //获取session对象
-        SqlSession sqlSession= Mybatis_utils.getSqlSession();
-        sign_record_mapper pm=sqlSession.getMapper(sign_record_mapper.class);
-
-//        sign_record sr=new sign_record("ID", java.sql.Date.valueOf("2021-03-09"),"user_ID",3447
-//                , Time.valueOf("22:10:27"),Time.valueOf("11:43:27"),1.1,12.2,3.2);
-//
-//        int sta=pm.insert_sign_record(sr);
-//        System.out.println(sta);
-        sign_record sr=pm.get_sign_record_List_by_sign_num(3447,"22:16:45");
-        System.out.println(sr);
-        //提交事务
-        sqlSession.commit();
-
-        //关闭sqlSession
-        sqlSession.close();
-    }
 
     @Test
     public void insert(){
@@ -80,4 +64,15 @@ public class mybatis_test {
         sqlSession.close();
     }
 
+    @Test
+    public void t(){
+        SqlSession sqlSession= Mybatis_utils.getSqlSession();
+        sign_space_mapper ssm=sqlSession.getMapper(sign_space_mapper.class);
+        List<sign_space> s= ssm.get_sign_space_by_user_ID_and_space_name("1805050221","你");
+        System.out.println(s);
+        if(s.isEmpty())
+            System.out.println("no");
+        else
+            System.out.println("st");
+    }
 }
